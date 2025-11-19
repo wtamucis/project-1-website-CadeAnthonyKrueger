@@ -1,12 +1,13 @@
-:root {
+#root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    //background-color: #242424;
 
+    box-sizing: border-box;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -19,3 +20,25 @@
     padding: 0;
     margin: 0;
 }
+
+// Global style vars for global css changes
+#root {
+    --color-main: #1B1D1E;
+    --color-secondary: #2f3132;
+    --color-text: white;
+    --icon-color: invert(0);
+    --color-accent1: #124F8B;
+    --color-accent2: #C52329;
+
+    --site-logo: url(/apollo-logo-trans-dark.png);
+}
+
+#root.LightMode {
+    --color-main: #f8f8f8;
+    --color-secondary: #bdc0c2;
+    --color-text: black;
+    --icon-color: invert(1);
+
+    --site-logo: url(/apollo-logo-trans-light.png);
+}
+

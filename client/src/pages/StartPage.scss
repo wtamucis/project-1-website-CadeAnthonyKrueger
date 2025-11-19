@@ -3,17 +3,11 @@
     width: 100%;
 }
 
-.NavTop {
+.Logo {
     height: 50px;
-    width: 100%;
-    background-color: rgb(15, 15, 15);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.Icon {
-    height: 30px;
-    aspect-ratio: 1/1;
-    filter: invert(1)
+    aspect-ratio: 84/30;
+    background-image: var(--site-logo);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }

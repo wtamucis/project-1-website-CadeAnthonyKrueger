@@ -1,5 +1,16 @@
 .App {
     height: 100%;
     width: 100%;
-    background-color: #1B1D1E;
+    background-color: var(--color-main);
+}
+
+header {
+    height: fit-content;
+    width: calc(100% - 80px);
+    padding-block: 20px;
+    padding-inline: 40px;
+    border-top: 2px solid var(--color-accent2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
