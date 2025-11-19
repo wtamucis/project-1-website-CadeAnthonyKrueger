@@ -1,10 +1,9 @@
 #root {
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
 
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
+    color: var(--color-text);
     //background-color: #242424;
 
     box-sizing: border-box;
@@ -24,21 +23,83 @@
 // Global style vars for global css changes
 #root {
     --color-main: #1B1D1E;
-    --color-secondary: #2f3132;
-    --color-text: white;
+    --color-secondary: rgba(24, 24, 24, 0.3);
+    --color-text: rgb(255, 254, 238);
     --icon-color: invert(0);
     --color-accent1: #124F8B;
     --color-accent2: #C52329;
 
     --site-logo: url(/apollo-logo-trans-dark.png);
+
+    --background-gradient: 
+        /* Muted red mist (barely visible) */
+        radial-gradient(
+        circle at 80% 20%,
+        rgba(197, 35, 41, 0.06),
+        transparent 55%
+        ),
+
+        /* Muted purple bloom */
+        radial-gradient(
+        circle at 20% 80%,
+        rgba(150, 120, 255, 0.05),
+        transparent 60%
+        ),
+
+        /* Deep muted blue glow */
+        radial-gradient(
+        circle at 30% 30%,
+        rgba(18, 79, 139, 0.08),
+        transparent 65%
+        ),
+
+        /* Main gradient (dark gray dominated) */
+        linear-gradient(
+        135deg,
+        #1B1D1E 0%,
+        #1E2225 35%,
+        #21262A 80%,
+        #1B1D1E 100%
+        );
 }
 
 #root.LightMode {
     --color-main: #f8f8f8;
-    --color-secondary: #bdc0c2;
-    --color-text: black;
+    --color-secondary: rgba(249, 249, 249, 0.3);
+    --color-text: #282828;
     --icon-color: invert(1);
 
     --site-logo: url(/apollo-logo-trans-light.png);
+
+    --background-gradient: 
+        /* Soft red mist (very subtle) */
+        radial-gradient(
+        circle at 80% 20%,
+        rgba(197, 35, 41, 0.05),
+        transparent 55%
+        ),
+
+        /* Soft purple bloom */
+        radial-gradient(
+        circle at 20% 80%,
+        rgba(150, 120, 255, 0.04),
+        transparent 60%
+        ),
+
+        /* Soft blue glow */
+        radial-gradient(
+        circle at 30% 30%,
+        rgba(18, 79, 139, 0.06),
+        transparent 65%
+        ),
+
+        /* Main gradient (light gray dominated) */
+        linear-gradient(
+        135deg,
+        #f8f8f8 0%,
+        #e6e7e8 35%,
+        #dadcde 80%,
+        #f8f8f8 100%
+        );
 }
 

@@ -1,6 +1,8 @@
 .StartPage {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .Logo {
@@ -10,4 +12,27 @@
     background-position: center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+}
+
+.StartContent {
+    height: 500px;
+    width: 90%;
+    max-width: 800px;
+    padding-block: 10px;
+    padding-inline: 20px;
+    background-color: var(--color-secondary);
+    align-self: center;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.FeatureGrid {
+    width: 50%;
+    aspect-ratio: 1/1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5%;
 }
