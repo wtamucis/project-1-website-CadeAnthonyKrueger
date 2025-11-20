@@ -1,3 +1,5 @@
+import './FeatureCard.scss'
+
 interface FeatureCardProps {
     title: string;
     color: string;
@@ -7,18 +9,18 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ title, color, icon, text }) => {
     return (
-        <div className="FeatureCard">
+        <div className="FeatureCard" style={{ boxShadow: `0 0 5px #0000001a` }}>
             <div 
                 className="FeatureTitleArea" 
-                style={{ borderBottom: `1px solid ${color}` }}
+                style={{ borderBottom: `2px solid ${color}` }}
             >
                 <div 
-                    className="Icon" 
+                    className="FeatureIcon" 
                     style={{ backgroundImage: `url(/${icon})` }}
                 />
+                <h2 className="FeatureTitle">{title}</h2>
             </div>
 
-            <h2 className="FeatureTitle">{title}</h2>
             <p className="FeatureText">{text}</p>
         </div>
     );

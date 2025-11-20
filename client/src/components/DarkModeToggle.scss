@@ -5,6 +5,11 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.DarkModeToggle:hover {
+    transform: scale(1.1);
 }
 
 .light {
@@ -16,14 +21,14 @@
 }
 
 .dark.animated {
-    animation: ToggleDarkMode 0.8s ease-out forwards;
+    animation: ToggleDarkMode 0.8s ease forwards;
 }
 
 .light.animated {
-    animation: ToggleDarkMode 0.8s ease-in reverse;
+    animation: ToggleDarkMode 0.8s ease reverse;
 }
 
 @keyframes ToggleDarkMode {
-    0% { transform: rotate(0deg); background-image: url(/moon.png); }
-    100% { transform: rotate(180deg); background-image: url(/sun.png); }
+  0%   { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
 }

@@ -8,11 +8,13 @@ const DarkModeToggle = () => {
 
     const handleDarkModeToggle = () => {
         setIsAnimated(true);
-        if (displayMode == "dark") {
-            document.getElementById("root")?.classList.add("LightMode");
-        } else {
-            document.getElementById("root")?.classList.remove("LightMode");
-        }
+        setTimeout(() => {
+            if (displayMode == "dark") {
+                document.getElementById("root")?.classList.add("LightMode");
+            } else {
+                document.getElementById("root")?.classList.remove("LightMode");
+            }
+        }, 800);
     };
 
     const handleAnimationEnd = () => {
