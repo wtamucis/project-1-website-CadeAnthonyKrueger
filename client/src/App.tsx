@@ -1,7 +1,6 @@
 import AppRouter from "./router/AppRouter";
 import "./App.scss";
 import { useEffect, useRef } from "react";
-import DarkModeToggle from "./components/DarkModeToggle";
 
 const App = () => {
 
@@ -28,14 +27,7 @@ const App = () => {
 
     return (
         <div ref={appRef} className="App">
-            <header className="AppHeader">
-                <div className="Logo"/>
-                <DarkModeToggle/>
-            </header>
             <AppRouter/>
-            <footer className="AppFooter">
-                <div className="FooterText">Apollo MedFlight — Internal Tool &nbsp;℗ 2025</div>
-            </footer>
         </div>
     )
 }

@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import FeatureCard from "../components/FeatureCard";
 import "./StartPage.scss"
+import AppHeader from "../components/AppHeader";
+import AppFooter from "../components/AppFooter";
 
 const StartPage = () => {
 
@@ -30,8 +33,11 @@ const StartPage = () => {
         }
     ];
 
+    const navigate = useNavigate();
+
     return (
         <div className="StartPage">
+            <AppHeader/>
             <h1>Apollo Shift Briefs</h1>
             <section className="StartContent">
                 <h3>Purpose:</h3>
@@ -45,8 +51,9 @@ const StartPage = () => {
                         </div>
                     ))}
                 </div>
-                <button className="StartButton">Get Started!</button>
+                <button onClick={() => navigate("/briefs")} className="StartButton">Get Started!</button>
             </section>
+            <AppFooter/>
         </div>
     )
 }

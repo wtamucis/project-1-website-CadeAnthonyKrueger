@@ -25,9 +25,10 @@
 #root {
     --color-main: #1B1D1E;
     --color-secondary: rgba(24, 24, 24, 0.3);
+    --color-tertiary: rgba(50, 50, 50, 0.5);
     --color-text: rgb(255, 254, 238);
     --color-text2: rgb(201, 201, 201);
-    --icon-color: invert(0);
+    --icon-color: invert(1);
     --color-accent1: #124F8B;
     --color-accent2: #C52329;
 
@@ -67,10 +68,11 @@
 
 #root.LightMode {
     --color-main: #f8f8f8;
-    --color-secondary: rgba(249, 249, 249, 0.3);
+    --color-secondary: rgba(181, 181, 181, 0.3);
+    --color-tertiary: rgba(190, 190, 190, 0.5);
     --color-text: #282828;
     --color-text2: rgb(55, 55, 55);
-    --icon-color: invert(1);
+    --icon-color: invert(0);
 
     --site-logo: url(/apollo-logo-trans-light.png);
 

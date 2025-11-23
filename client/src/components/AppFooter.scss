@@ -1,0 +1,13 @@
+.AppFooter {
+    padding: 10px;
+    color: var(--color-text2);
+    font-size: 0.9em;
+    font-style: italic;
+    height: 92px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-grow: 1;
+    flex-shrink: 0;
+}

@@ -1,0 +1,43 @@
+.NavBar {
+    position: fixed;
+    top: 91.6px;
+    left: -100px;
+    flex-shrink: 0;
+    height: calc(100dvh - 91.6px - 91.6px);
+    width: 80px;
+    background-color: var(--color-secondary);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 12px;
+    justify-content: flex-start;
+    align-items: center;
+    visibility: hidden;
+    transition: left 0.6s ease, visibility 0.6s ease;
+}
+
+.NavBar.visible {
+    left: 12.5px;
+    visibility: visible;
+}
+
+.NavItem {
+    height: 25px;
+    width: 25px;
+    aspect-ratio: 1/1;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    filter: var(--icon-color);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.NavItem:hover {
+    transform: scale(1.05);
+}
+
+.NavItem:active {
+    transform: scale(.99);
+}
