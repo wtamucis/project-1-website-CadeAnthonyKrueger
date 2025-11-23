@@ -10,7 +10,7 @@
 
 .FormArea {
     width: 72%;
-    height: 800px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -63,4 +63,11 @@
 
 .ConfirmSelection:hover {
     filter: invert(72%) sepia(32%) saturate(450%) hue-rotate(75deg) brightness(95%);
+}
+
+.AircraftInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 65%;
 }

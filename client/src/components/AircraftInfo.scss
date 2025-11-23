@@ -1,0 +1,61 @@
+.AircraftInfo {
+    background-color: var(--color-secondary);
+    height: 100px;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    padding-block: 10px;
+    padding-inline: 40px;
+    box-sizing: border-box;
+}
+
+.AircraftInfoLabel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    cursor: pointer;
+}
+
+.AircraftImage {
+    position: relative;
+    height: 60px;
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.StatusMenu {
+    z-index: 1000;
+    position: absolute;
+    bottom: -132%;
+    right: -132%;
+    background-color: #222223;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.StatusOption {
+    padding: 5px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 5px;
+}
+
+.StatusOption:hover {
+    background-color: var(--color-secondary);
+}
+
+.StatusColor {
+    border-radius: 50%;
+    height: 10px;
+    aspect-ratio: 1/1;
+}
