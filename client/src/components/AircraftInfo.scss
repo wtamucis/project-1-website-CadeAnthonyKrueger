@@ -1,6 +1,7 @@
 .AircraftInfo {
+    position: relative;
     background-color: var(--color-secondary);
-    height: 100px;
+    height: 90px;
     width: 100%;
     border-radius: 5px;
     display: flex;
@@ -8,33 +9,59 @@
     justify-content: left;
     align-items: center;
     padding-block: 10px;
-    padding-inline: 40px;
+    padding-inline: 20px;
     box-sizing: border-box;
+}
+
+.AircraftStatusIndicator {
+    position: absolute;
+    height: 75%;
+    width: 2px;
+    border-radius: 3px;
 }
 
 .AircraftInfoLabel {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
-    width: 90px;
-    cursor: pointer;
+    width: fit-content;
+    margin-left: 5px;
+}
+
+.AircraftNameAndTitle {
+    display: flex;
+    flex-direction: column;
+}
+
+.AircraftName {
+    font-weight: 400;
+    font-size: 1.3em;
+}
+
+.AircraftSubtitle {
+    font-style: italic;
+    color: var(--color-text2);
 }
 
 .AircraftImage {
     position: relative;
-    height: 60px;
+    height: 45px;
+    aspect-ratio: 1536/1024;
+    margin-left: 5px;
     background-position: 0 0;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
 
 .StatusMenu {
     z-index: 1000;
     position: absolute;
-    bottom: -132%;
-    right: -132%;
+    bottom: 0;
+    left: 0;
+    transform: translate(50%, 87%);
     background-color: #222223;
     border-radius: 5px;
     display: flex;
@@ -48,6 +75,7 @@
     justify-content: left;
     align-items: center;
     gap: 5px;
+    cursor: pointer;
 }
 
 .StatusOption:hover {
@@ -58,4 +86,50 @@
     border-radius: 50%;
     height: 10px;
     aspect-ratio: 1/1;
+}
+
+.StatusTitle {
+    color: rgb(255, 254, 238);
+}
+
+.AircraftStatusDetails {
+    //background-color: red;
+    height: 60px;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.LocationContainer {
+    justify-self: right;
+    align-self:last baseline;
+    height: 50%;
+    width: fit-content;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 5px;
+    border-radius: 4px;
+    padding: 3px;
+}
+
+.LocationIcon {
+    background-image: url(/location.png);
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 60%;
+    aspect-ratio: 1/1;
+    filter: var(--icon-color);
+}
+
+.LocationInput {
+    width: 150px;
+    border-bottom: 1px solid var(--color-text);
+    height: 50%;
+    background-color: rgb(0, 0, 0, 0);
+    border: none;
+    padding-inline: 3px;
+    text-decoration: underline;
+;
 }

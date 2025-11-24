@@ -12,13 +12,13 @@ const SingleBriefPage = () => {
     const [date, setDate] = useState<Date | null>(new Date());
 
     const aircraftInfo = [
-        { name: 'Apollo 1', type: 'plane' },
-        { name: 'Apollo 2', type: 'plane' },
-        { name: 'Apollo 3', type: 'rotor' },
-        { name: 'Apollo 4', type: 'rotor' },
-        { name: 'Apollo 5', type: 'rotor' },
-        { name: 'Apollo 6', type: 'plane' },
-        { name: 'Skycare', type: 'rotor' }
+        { name: 'Apollo 1', type: 'plane', base: 'KTDW' },
+        { name: 'Apollo 2', type: 'plane', base: 'KGUY' },
+        { name: 'Apollo 3', type: 'rotor', base: 'KDHT' },
+        { name: 'Apollo 4', type: 'rotor', base: 'Golden Plains' },
+        { name: 'Apollo 5', type: 'rotor', base: 'Chi St. Francis' },
+        { name: 'Apollo 6', type: 'plane', base: 'KDDC' },
+        { name: 'Skycare', type: 'rotor', base: 'UHSA' }
     ];
 
      return (
@@ -39,7 +39,7 @@ const SingleBriefPage = () => {
                 </div>
                 <div className="AircraftInfoContainer">
                     {aircraftInfo.map((aircraft) => (
-                        <AircraftInfo name={aircraft.name} type={aircraft.type}/>
+                        <AircraftInfo name={aircraft.name} type={aircraft.type} base={aircraft.base}/>
                     ))}
                 </div>
             </form>
