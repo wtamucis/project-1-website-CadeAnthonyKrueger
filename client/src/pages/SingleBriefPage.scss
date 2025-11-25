@@ -9,7 +9,7 @@
 }
 
 .FormArea {
-    width: 72%;
+    width: 78%;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -67,7 +67,9 @@
 
 .AircraftInfoContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
-    width: 40%;
+    width: 100%;
 }

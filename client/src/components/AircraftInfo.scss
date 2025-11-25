@@ -1,11 +1,11 @@
 .AircraftInfo {
     position: relative;
     background-color: var(--color-secondary);
-    height: 90px;
-    width: 100%;
+    height: 200px;
+    width: 493px;
     border-radius: 5px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: left;
     align-items: center;
     padding-block: 10px;
@@ -15,6 +15,8 @@
 
 .AircraftStatusIndicator {
     position: absolute;
+    top: 12.5%;
+    left: 20px;
     height: 75%;
     width: 2px;
     border-radius: 3px;
@@ -24,10 +26,14 @@
     position: relative;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     width: fit-content;
+    margin-top: 10px;
     margin-left: 5px;
+    justify-self: start;
+    align-self: start;
+    width: 100%;
 }
 
 .AircraftNameAndTitle {
@@ -38,16 +44,18 @@
 .AircraftName {
     font-weight: 400;
     font-size: 1.3em;
+    white-space: nowrap;
 }
 
 .AircraftSubtitle {
     font-style: italic;
     color: var(--color-text2);
+    white-space: nowrap;
 }
 
 .AircraftImage {
     position: relative;
-    height: 45px;
+    height: 55px;
     aspect-ratio: 1536/1024;
     margin-left: 5px;
     background-position: 0 0;
@@ -92,44 +100,91 @@
     color: rgb(255, 254, 238);
 }
 
+.DetailLabels {
+    display: flex;
+    flex-direction: column;
+    gap: 50Spx;
+}
+
+.DetailLabel {
+    text-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.DetailLabel.fake {
+    visibility: hidden;
+}
+
 .AircraftStatusDetails {
-    //background-color: red;
-    height: 60px;
-    flex: 1 1 0;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+    margin-left: 70px;
+    padding: 30px;
+    font-weight: 400;
+    padding: 10px;
+    color: var(--color-text2);
+    font-weight: 400;
+}
+
+.DetailInputs {
     display: flex;
     flex-direction: column;
 }
 
-.LocationContainer {
-    justify-self: right;
-    align-self:last baseline;
-    height: 50%;
-    width: fit-content;
+.Input {
+    width: 242px;
+    outline: 0;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font: inherit;
+    color: inherit;
+    resize: none;
+    margin: 1px;
+    border-radius: 3px;
+}
+
+.Input.detail {
+    width: 300px;
+    background-color: var(--color-secondary);
+}
+
+.Input.location {
+    width: 140px;
+    font-size: 1.2em;
+    font-weight: 200;
+    background-color: rgba(0,0,0,0);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.multitext {
+    flex-grow: 1;
+}
+
+.LocationDetailsContainer {
+    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: right;
     align-items: center;
-    gap: 5px;
-    border-radius: 4px;
-    padding: 3px;
+    justify-content: center;
+    gap: 8px;
 }
 
 .LocationIcon {
+    height: 25px;
+    aspect-ratio: 1/1;
     background-image: url(/location.png);
     background-position: 0 0;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    height: 60%;
-    aspect-ratio: 1/1;
     filter: var(--icon-color);
-}
-
-.LocationInput {
-    width: 150px;
-    border-bottom: 1px solid var(--color-text);
-    height: 50%;
-    background-color: rgb(0, 0, 0, 0);
-    border: none;
-    padding-inline: 3px;
-    text-decoration: underline;
-;
 }

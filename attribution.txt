@@ -18,4 +18,4 @@
 
 <a target="_blank" href="https://icons8.com/icon/82766/checkmark">Checkmark</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
-<a target="_blank" href="https://icons8.com/icon/BE8zKVHfRaQj/location">Location</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+<a target="_blank" href="https://icons8.com/icon/85798/place-marker">location</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>

@@ -21,11 +21,28 @@ const SingleBriefPage = () => {
         { name: 'Skycare', type: 'rotor', base: 'UHSA' }
     ];
 
+    const handleSubmit = (e: { preventDefault: () => void; target: HTMLFormElement | undefined; }) => {
+        e.preventDefault(); // prevents page refresh
+
+        // Gather ALL form data (inputs, textareas, selects)
+        const data = Object.fromEntries(new FormData(e.target));
+
+        // Send it to the endpoint
+        fetch("https://www.w3schools.com/action_page.php", {
+            method: "POST",
+            body: new URLSearchParams(data)
+        })
+        .then(res => res.text())
+        .then(result => console.log("Response:", result))
+        .catch(err => console.error(err));
+    };
+
+
      return (
         <div className="SingleBriefPage">
             <AppHeader/>
             <h4 style={{ textAlign: 'center' }}>Daily Shift Brief</h4>
-            <form className='FormArea'>
+            <form className='FormArea' action="https://www.w3schools.com/action_page.php" method="POST">
                 <div className="OpenerInfoContainer">
                     <NameAdderComponent/>
                     <div className="DateContainer">
@@ -42,6 +59,7 @@ const SingleBriefPage = () => {
                         <AircraftInfo name={aircraft.name} type={aircraft.type} base={aircraft.base}/>
                     ))}
                 </div>
+                <button onClick={handleSubmit}></button>
             </form>
             <AppFooter/>
         </div>
