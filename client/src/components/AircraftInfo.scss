@@ -53,6 +53,7 @@
     font-style: italic;
     color: var(--color-text2);
     white-space: nowrap;
+    font-weight: 400;
 }
 
 .AircraftImage {
@@ -64,6 +65,11 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     cursor: pointer;
+
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
 }
 
 .StatusMenu {
@@ -140,6 +146,10 @@
     margin-left: 6px;
     font-size: 0.75rem;
     color: var(--color-text2);
+}
+
+.focused {
+    font-weight: 400;
 }
 
 .DetailInputs {
