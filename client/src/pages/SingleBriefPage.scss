@@ -48,6 +48,25 @@
     outline: none;
 }
 
+.DatePickerWrap {
+    position: relative;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+    display: inline-block !important;
+}
+
+.react-datepicker-popper {
+    position: absolute !important;
+}
+
+.react-datepicker__input-container input {
+    outline: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
 .ConfirmSelection {
     height: 20px;
     aspect-ratio: 1/1;
@@ -66,10 +85,28 @@
     filter: invert(72%) sepia(32%) saturate(450%) hue-rotate(75deg) brightness(95%);
 }
 
+.MiddleInfoContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 .AircraftInfoContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    width: 100%;
+    width: auto;
+}
+
+.OpenEndedInfoContainer {
+    background-color: orange;
+    height: 100%;
+    width: auto;
+    flex: 1;
 }

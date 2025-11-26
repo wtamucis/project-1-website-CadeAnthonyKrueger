@@ -47,19 +47,26 @@ const SingleBriefPage = () => {
                     <NameAdderComponent/>
                     <div className="DateContainer">
                         <strong>Date: </strong>
-                        <DatePicker
-                            className='EditableDate'
-                            selected={date}
-                            onChange={(d) => setDate(d) }
-                        />
+                        <div className="DatePickerWrap">
+                            <DatePicker
+                                className='EditableDate'
+                                selected={date}
+                                onChange={(d) => setDate(d) }
+                            />
+                        </div>
                     </div>
                 </div>
-                <div className="AircraftInfoContainer">
-                    {aircraftInfo.map((aircraft) => (
-                        <AircraftInfo name={aircraft.name} type={aircraft.type} base={aircraft.base}/>
-                    ))}
+                <div className='MiddleInfoContainer'>
+                    <div className="AircraftInfoContainer">
+                        {aircraftInfo.map((aircraft) => (
+                            <AircraftInfo name={aircraft.name} type={aircraft.type} base={aircraft.base}/>
+                        ))}
+                    </div>
+                    <div className='OpenEndedInfoContainer'>
+                        
+                    </div>
                 </div>
-                <button onClick={handleSubmit}></button>
+                <button onClick={handleSubmit}>Submit</button>
             </form>
             <AppFooter/>
         </div>
