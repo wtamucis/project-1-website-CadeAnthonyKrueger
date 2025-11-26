@@ -53,3 +53,7 @@ p {
     width: 99%;
     margin-bottom: 16px;
 }
+
+.react-tooltip {
+    z-index: 3000 !important;
+}

@@ -6,6 +6,8 @@ import DatePicker from "react-datepicker";
 import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import AircraftInfo from '../components/AircraftInfo';
+import PendingRequests from '../views/PendingRequests';
+import SimpleOpenEndedFieldset from '../components/SimpleOpenEndedFieldset';
 
 const SingleBriefPage = () => {
 
@@ -63,7 +65,24 @@ const SingleBriefPage = () => {
                         ))}
                     </div>
                     <div className='OpenEndedInfoContainer'>
-                        
+                        <PendingRequests/>
+                        <SimpleOpenEndedFieldset 
+                            title='Any NICU/hospital diversions?'
+                            placeholder='ex. BSA ER no trauma beds available; divert to NWTH'
+                        />
+                        <SimpleOpenEndedFieldset 
+                            title='Any scheduled transports, PR events, or repositions planned?'
+                            placeholder='ex. A4 schedueled for PR at stadium at 1400'
+                        />
+                        <SimpleOpenEndedFieldset
+                            title='Verify UHV radio has Apollo selected and NOT muted, PTTs, iPhone, & iPads are charged'
+                            placeholder='ex. All charged and unmuted'
+                        />
+                        <SimpleOpenEndedFieldset
+                            title='Other Notes'
+                            placeholder='ex. Apollo Ambulance is out for mtx'
+                            fixedSize={false}
+                        />
                     </div>
                 </div>
                 <button onClick={handleSubmit}>Submit</button>

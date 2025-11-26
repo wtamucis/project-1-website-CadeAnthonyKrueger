@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FC } from 'react';
 import './AircraftInfo.scss';
 import { Tooltip } from 'react-tooltip';
+import FieldsetDetails from './FieldsetDetails';
 
 interface AircraftInfoProps {
     name: string;
@@ -8,68 +9,11 @@ interface AircraftInfoProps {
     base: string
 }
 
-interface FieldDef {
-    key: string;
-    label: string;
-    type: "input" | "textarea" | string;
-    placeholder: string;
-}
-
 const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
 
     const [status, setStatus] = useState<number>(1);
     const [statusMenuOpen, setStatusMenuOpen] = useState<boolean>(false);
-    const [focusedField, setFocusedField] = useState<string | null>(null);
     const menuRef = useRef<HTMLDivElement | null>(null);
-
-    const buildFieldset = (
-        fields: FieldDef[],
-        focusedField: string | null,
-        setFocusedField: (value: string | null) => void
-    ) => {
-        return (
-            <fieldset className="AircraftStatusDetails">
-                <legend>
-                    {fields
-                        .map((f) => (
-                            <span
-                                key={f.key}
-                                className={focusedField === f.key ? "focused" : ""}
-                            >
-                                {f.label}
-                            </span>
-                        ))
-                        .reduce<React.ReactNode[]>((prev, curr, index) => {
-                            if (index === 0) return [curr];
-                            return [...prev, " · ", curr];
-                        }, [])
-                    }
-                </legend>
-                <div className="DetailInputs">
-                    {fields.map((f) =>
-                        f.type === "textarea" ? (
-                            <textarea
-                                key={f.key}
-                                className="Input detail multitext"
-                                placeholder={f.placeholder}
-                                onFocus={() => setFocusedField(f.key)}
-                                onBlur={() => setFocusedField(null)}
-                            />
-                        ) : (
-                            <input
-                                key={f.key}
-                                className="Input detail"
-                                type="text"
-                                placeholder={f.placeholder}
-                                onFocus={() => setFocusedField(f.key)}
-                                onBlur={() => setFocusedField(null)}
-                            />
-                        )
-                    )}
-                </div>
-            </fieldset>
-        );
-    };
 
     const statusList = [
         {
@@ -179,7 +123,7 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
                     key: "oos_notes",
                     label: "Notes",
                     type: "textarea",
-                    placeholder: `${name} base OOS. Flights being diverted to KAMA`,
+                    placeholder: `ex. ${name} base OOS. Flights being diverted to KAMA`,
                 },
             ],
         },
@@ -205,7 +149,7 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
                     key: "delay_notes",
                     label: "Notes",
                     type: "textarea",
-                    placeholder: `${name} crew rest end 2133`,
+                    placeholder: `ex. ${name} crew rest end 2133`,
                 },
             ],
         },
@@ -272,10 +216,7 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
                     ))}
                 </div>}
             </label>
-            {statusList.map((status) => ({
-                ...status,
-                menuOptions: buildFieldset(status.fields, focusedField, setFocusedField)
-            }))[status].menuOptions}
+            <FieldsetDetails fields={statusList[status].fields} />
         </div>
     );
 };

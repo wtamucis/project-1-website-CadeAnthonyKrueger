@@ -125,33 +125,6 @@
     visibility: hidden;
 }
 
-.AircraftStatusDetails {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
-    margin-left: 50px;
-    color: var(--color-text2);
-    font-weight: 200;
-
-    padding-inline: 8px;
-    min-inline-size: 0;
-    border-radius: 5px;
-    border: var(--border-secondary);
-    box-sizing: border-box;
-}
-
-.AircraftStatusDetails > legend {
-    padding: 0 2px;
-    margin-left: 6px;
-    font-size: 0.75rem;
-    color: var(--color-text2);
-}
-
-.focused {
-    font-weight: 400;
-}
-
 .DetailInputs {
     display: flex;
     flex-direction: column;
@@ -181,7 +154,7 @@
 }
 
 .Input.detail {
-    width: 300px;
+    min-width: 300px;
 }
 
 .Input.location {

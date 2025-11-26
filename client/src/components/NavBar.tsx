@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
 import './NavBar.scss'
-
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 
@@ -15,9 +14,8 @@ const NavBar = ({ isVisible }: NavBarProps) => {
     const navItems = [
         { title: "Home", icon: "home.png", func: () => navigate('/start') },
         { title: "Shift Briefs", icon: "shift-briefs.png", func: () => navigate('/briefs') }
-    ]
-    
-    // Just change it's left property from 12.5 to -100
+    ];
+
     return (
         <div className={`NavBar ${isVisible ? "visible" : ""}`}>
             {navItems.map((el, index) => (

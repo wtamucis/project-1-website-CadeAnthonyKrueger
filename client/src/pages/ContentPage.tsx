@@ -103,7 +103,7 @@ const ContentPage = () => {
                         <button 
                             className="NewButton"
                             onClick={handleCreateNew}
-                        >Create New +</button>
+                        >+ Create New</button>
                     </div>
                     <div className="BriefsDataArea">
                         <div className="BriefsDataFilterSection">
