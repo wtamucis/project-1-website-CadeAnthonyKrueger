@@ -3,7 +3,7 @@
     min-height: 42px;
     flex: 0;
     width: 100%;
-    border: 0.1px solid rgba(146, 146, 146, 0.02);
+    border: var(--border-main);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
@@ -13,10 +13,9 @@
 }
 
 .Record:hover {
-    background-color: rgba(24, 24, 24, 0.2);
+    background-color: var(--color-tertiary);
 }
 
 .RecordTitle, .ModDate, .ModBy {
-    //background-color: red;
     text-indent: 10%;
 }

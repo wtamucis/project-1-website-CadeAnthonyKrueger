@@ -13,7 +13,7 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
     const [status, setStatus] = useState<number>(1);
     const [statusMenuOpen, setStatusMenuOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
-    
+
     const statusList = [
         { 
             label: 'Weather Green',
@@ -25,14 +25,12 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
                 </div>
             ),
             menuOptions: (
-                <div className='AircraftStatusDetails'>
-                    <div className='DetailLabels'>
-                        <div className='DetailLabel'>Notes</div>
-                        <div className='DetailLabel fake'>Mission #</div>
-                    </div>
+                <fieldset className='AircraftStatusDetails'>
+                    <legend>Notes</legend>
                     <div className='DetailInputs'>
+                        <textarea className='Input detail multitext' placeholder={`ex. ${name} will have a late medic @ 0030.`}/>
                     </div>
-                </div>
+                </fieldset>
             )
         },
         { 
@@ -45,15 +43,12 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
                 </div>
             ),
             menuOptions: (
-                <div className='AircraftStatusDetails'>
-                    <div className='DetailLabels'>
-                        <div className='DetailLabel'>Notes</div>
-                        <div className='DetailLabel fake'>Mission #</div>
-                    </div>
+                <fieldset className='AircraftStatusDetails'>
+                    <legend>Notes</legend>
                     <div className='DetailInputs'>
                         <textarea className='Input detail multitext' placeholder={`ex. ${name} will have a late nurse @ 2130.`}/>
                     </div>
-                </div>
+                </fieldset>
             )
         },
         { 
@@ -66,17 +61,13 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
                 </div>
             ),
             menuOptions: (
-                <div className='AircraftStatusDetails'>
-                    <div className='DetailLabels'>
-                        <div className='DetailLabel'>Wx ETA</div>
-                        <div className='DetailLabel'>Notes</div>
-                        <div className='DetailLabel fake'>Mission #</div>
-                    </div>
+                <fieldset className='AircraftStatusDetails'>
+                    <legend>Wx ETA · Notes</legend>
                     <div className='DetailInputs'>
                         <input className='Input detail' type='text' placeholder='ex. 1610 for potential wx improvement'></input>
                         <textarea className='Input detail multitext' placeholder={`ex. ${name} is reposioned at their aiport for weather`}/>
                     </div>
-                </div>
+                </fieldset>
             )
         },
         { 
@@ -89,19 +80,14 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
                 </div>
             ),
             menuOptions: (
-                <div className='AircraftStatusDetails'>
-                    <div className='DetailLabels'>
-                        <div className='DetailLabel'>Mission #</div>
-                        <div className='DetailLabel'>Next step</div>
-                        <div className='DetailLabel'>Notes</div>
-                        <div className='DetailLabel fake'>Mission #</div>
-                    </div>
+                <fieldset className='AircraftStatusDetails'>
+                    <legend>Mission # · Next Step · Notes</legend>
                     <div className='DetailInputs'>
                         <input className='Input detail' type='text' placeholder='ex. 25-12345'></input>
                         <input className='Input detail' type='text' placeholder='ex. En route sending'></input>
-                        <textarea className='Input detail multitext' placeholder='ex. Apollo 1 will have MTX from 2130 to 2000'></textarea>
+                        <textarea className='Input detail multitext' placeholder={`ex. ${name} will have MTX from 2130 to 2000`}></textarea>
                     </div>
-                </div>
+                </fieldset>
             )
         },
         { 
@@ -114,19 +100,14 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
                 </div>
             ),
             menuOptions: (
-                <div className='AircraftStatusDetails'>
-                    <div className='DetailLabels'>
-                        <div className='DetailLabel'>Reason</div>
-                        <div className='DetailLabel'>Est. RTS</div>
-                        <div className='DetailLabel'>Notes</div>
-                        <div className='DetailLabel fake'>Mission #</div>
-                    </div>
+                <fieldset className='AircraftStatusDetails'>
+                    <legend>Reason · Est. RTS · Notes</legend>
                     <div className='DetailInputs'>
                         <input className='Input detail' type='text' placeholder='ex. Schueduled Maintenence'></input>
                         <input className='Input detail' type='text' placeholder='ex. 2100'></input>
                         <textarea className='Input detail multitext' placeholder={`${name} base OOS. Flights being diverted to KAMA`}></textarea>
                     </div>
-                </div>
+                </fieldset>
             )
         },
         {
@@ -139,19 +120,14 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
                 </div>
             ),
             menuOptions: (
-                <div className='AircraftStatusDetails'>
-                    <div className='DetailLabels'>
-                        <div className='DetailLabel'>Delay</div>
-                        <div className='DetailLabel'>Est. RTS</div>
-                        <div className='DetailLabel'>Notes</div>
-                        <div className='DetailLabel fake'>Mission #</div>
-                    </div>
+                <fieldset className='AircraftStatusDetails'>
+                    <legend>Delay · Est. RTS · Notes</legend>
                     <div className='DetailInputs'>
                         <input className='Input detail' type='text' placeholder='ex. Refilling of oxygen at KTDW'></input>
                         <input className='Input detail' type='text' placeholder='ex. 1510'></input>
                         <textarea className='Input detail multitext' placeholder={`${name} crew rest end 2133`}></textarea>
                     </div>
-                </div>
+                </fieldset>
             )
         }
     ];
@@ -180,19 +156,19 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
         <div className="AircraftInfo">
             <div className='AircraftStatusIndicator' style={{ backgroundColor: statusList[status].color }}/>
             <label className="AircraftInfoLabel" htmlFor='ac'>
-                <div className='LocationDetailsContainer' >
-                    <div className='LocationIcon'/>
-                    <input 
-                        className='Input location' 
-                        defaultValue={base}
-                        data-tooltip-id='Il'
-                        data-tooltip-content='Edit Location'
-                    />
-                    <Tooltip id='Il' place="top" />
-                </div>
                 <div className='AircraftNameAndTitle'>
                     <div className="AircraftName">{name}</div>
                     {statusList[status].subtitle}
+                    <div className='LocationDetailsContainer' >
+                        <div className='LocationIcon'/>
+                        <input 
+                            className='Input location' 
+                            defaultValue={base}
+                            data-tooltip-id='Il'
+                            data-tooltip-content='Edit Location'
+                        />
+                        <Tooltip id='Il' place="bottom" />
+                    </div>
                 </div>
                 <div 
                     id="ac" className="AircraftImage" 
@@ -218,3 +194,14 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
 };
 
 export default AircraftInfo;
+
+{/* <div className='LocationDetailsContainer' >
+                    <div className='LocationIcon'/>
+                    <input 
+                        className='Input location' 
+                        defaultValue={base}
+                        data-tooltip-id='Il'
+                        data-tooltip-content='Edit Location'
+                    />
+                    <Tooltip id='Il' place="top" />
+                </div> */}

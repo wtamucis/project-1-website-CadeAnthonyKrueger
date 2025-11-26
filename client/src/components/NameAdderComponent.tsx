@@ -43,7 +43,7 @@ const NameAdderComponent = () => {
             <Tooltip id="remove-name" place="top" />
             {namesSelected.length < 4 && 
             (<>
-                <select id="ogp" ref={ogpRef}>
+                <select className="Dropdown" id="ogp" ref={ogpRef}>
                     {nameList.map((name, index) => (
                         <option key={index} value={index}>{name}</option>
                     ))}
