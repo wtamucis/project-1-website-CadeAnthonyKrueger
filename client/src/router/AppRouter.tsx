@@ -2,11 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StartPage from "../pages/StartPage";
 import ContentPage from "../pages/ContentPage";
 import SingleBriefPage from "../pages/SingleBriefPage";
+import ScrollToTop from "../components/ScrollToTop";
 
 const AppRouter = () => {
 
     return (
         <BrowserRouter>
+        <ScrollToTop/>
             <Routes>
                 <Route index element={<StartPage/>}/>
                 <Route path="/start" element={<StartPage/>}/>

@@ -1,8 +1,6 @@
 .App {
     overflow-y: scroll;
     overflow-x: hidden;
-    scrollbar-gutter: stable;
-    scrollbar-width: 17px;
     height: 100%;
     width: 100%;
     background: var(--background-gradient);
@@ -10,6 +8,8 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    padding: 0;
+    margin: 0;
 }
 
 h1 {
@@ -56,4 +56,10 @@ p {
 
 .react-tooltip {
     z-index: 3000 !important;
+}
+
+@media (pointer: coarse) {
+    .react-tooltip {
+        display: none !important;
+    }
 }
