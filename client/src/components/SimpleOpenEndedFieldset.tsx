@@ -12,7 +12,7 @@ const SimpleOpenEndedFieldset = ({ title, placeholder, fixedSize = true }: Simpl
         <fieldset className={`SimpleOpenEndedFieldset ${fixedSize ? 'fixedSize' : ''}`}>
             <legend>{title}</legend>
             <textarea
-                className="Input detail multitext"
+                className="Input detail multitext simple"
                 placeholder={placeholder}
             />
         </fieldset>

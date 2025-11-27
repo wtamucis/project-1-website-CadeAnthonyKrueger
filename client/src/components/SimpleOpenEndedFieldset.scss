@@ -28,6 +28,10 @@
     box-sizing: border-box;
 }
 
+.simple {
+    min-height: 100px;
+}
+
 .fixedSize {
     height: fit-content;
 }
