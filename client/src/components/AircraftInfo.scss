@@ -185,3 +185,28 @@
     background-repeat: no-repeat;
     filter: var(--icon-color);
 }
+
+@media (max-width: 760px) {
+    .AircraftInfo {
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+    }
+
+    .AircraftInfoLabel {
+        width: 100%;
+    }
+
+    .DetailInputs {
+        width: 100%;
+    }
+
+    .Input {
+        width: 100%;
+    }
+
+    .Input.detail {
+        min-width: fit-content;
+        width: 100%;
+    }
+}

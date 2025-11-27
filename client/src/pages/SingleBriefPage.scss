@@ -108,6 +108,12 @@
     width: auto;
 }
 
+@media (max-width: 760px) {
+    .AircraftInfoContainer {
+        width: 100%;
+    }
+}
+
 .OpenEndedInfoContainer {
     //background-color: orange;
     position: relative;

@@ -5,6 +5,12 @@
     gap: 10px;
 }
 
+@media (max-width: 760px) {
+    .NameAdderComponent {
+        flex-direction: column;
+    }
+}
+
 .SubtitleText {
     padding-block: 8px;
 }

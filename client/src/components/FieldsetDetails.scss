@@ -25,3 +25,10 @@
 .focused {
     font-weight: 400;
 }
+
+@media (max-width: 760px) {
+    .FieldsetDetails {
+        width: 100%;
+        margin-left: 20px;
+    }
+}
