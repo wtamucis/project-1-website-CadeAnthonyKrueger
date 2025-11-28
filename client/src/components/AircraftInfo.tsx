@@ -159,6 +159,18 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
         setStatusMenuOpen(opening);
     };
 
+    const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const el = e.target;
+
+        // Reset height first so shrink works
+        el.rows = 1;
+
+        // If content overflows, grow rows
+        if (el.scrollHeight > el.clientHeight) {
+            el.rows = 2;
+        }
+    };
+
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
             if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -184,9 +196,11 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
                     {statusList[status].subtitle}
                     <div className='LocationDetailsContainer' >
                         <div className='LocationIcon'/>
-                        <input 
+                        <textarea 
                             className='Input location' 
+                            onInput={handleInput}
                             defaultValue={base}
+                            rows={1}
                             data-tooltip-id='Il'
                             data-tooltip-content='Edit Location'
                         />

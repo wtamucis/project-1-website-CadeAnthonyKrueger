@@ -1,8 +1,9 @@
 .SimpleOpenEndedFieldset {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex: 1;
-    height: auto;
+    height: 169.45px;
     min-height: 169.45px;
     width: 100%;
     max-width: 603.2px;
@@ -26,10 +27,11 @@
 .Input.detail {
     width: 100%;
     box-sizing: border-box;
+    font-weight: 200;
 }
 
 .simple {
-    min-height: 100px;
+    height: 100%;
 }
 
 .fixedSize {

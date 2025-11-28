@@ -98,7 +98,7 @@ const ContentPage = () => {
             <AppHeader/>
             <div className="ContentArea">
                 <section className="DataSection">
-                    <h4>Shift Briefs</h4>
+                    <h5>Shift Briefs</h5>
                     <div className="OptionsArea">
                         <button 
                             className="NewButton"

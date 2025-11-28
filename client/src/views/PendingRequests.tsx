@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './PendingRequests.scss';
 import FieldsetDetails from '../components/FieldsetDetails';
-import { Tooltip } from 'react-tooltip';
 
 const PendingRequests = () => {
 
@@ -45,13 +44,10 @@ const PendingRequests = () => {
                         <div 
                             className='RemovePendingRequest'
                             onClick={() => handleRemovePendingRequest(index)}
-                            data-tooltip-id='cpr'
-                            data-tooltip-content='Remove Request'
                         />
                     </FieldsetDetails>
                 ))
             )}
-            <Tooltip id='cpr' place="top" />
             <button type='button' className="NewButton" onClick={handleAddPendingRequest}>+ Add Request</button>
         </fieldset>
     );
