@@ -1,0 +1,91 @@
+.ContentPage {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 92px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ContentArea {
+    width: 75%;
+    height: 800px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.DataSection {
+    overflow: hidden;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.OptionsArea {
+    height: 60px;
+    width: 100%;
+}
+
+.BriefsDataArea {
+    width: 100%;
+    flex: 1;
+    height: 100px;
+    background-color: var(--color-secondary);
+    display: flex;
+    flex-direction: column;
+}
+
+.BriefsDataFilterSection {
+    height: 40px;
+    width: calc(100% - 20px);
+    background-color: var(--color-tertiary);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding: 10px;
+}
+
+.FileName, .DateModified, .ModifiedBy {
+    padding-left: 10%;
+    font-weight: 400;
+}
+
+.BriefsDataEntries {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.BriefsDataEntries::-webkit-scrollbar {
+    width: 10px;
+}
+
+.BriefsDataEntries::-webkit-scrollbar-track {
+    background: var(--color-tertiary);
+}
+
+.BriefsDataEntries::-webkit-scrollbar-thumb {
+    background: rgba(120, 120, 120, 0.7);
+    border-radius: 6px;
+}
+
+.BriefsDataEntries::-webkit-scrollbar-thumb:hover {
+    background: rgba(150, 150, 150, 0.8);
+}
+
+.BlockForNow {
+    height: 50px;
+    width: 100%;
+    background-color: rgba(206, 203, 203, 0.1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}

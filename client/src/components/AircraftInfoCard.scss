@@ -1,0 +1,214 @@
+.AircraftInfoCard {
+    position: relative;
+    background-color: var(--color-secondary);
+    border: var(--border-main);
+    height: 150px;
+    width: fit-content;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    padding-block: 10px;
+    padding-inline: 20px;
+    box-sizing: border-box;
+}
+
+.AircraftStatusIndicator {
+    position: absolute;
+    top: 12.5%;
+    left: 20px;
+    height: 75%;
+    width: 2px;
+    border-radius: 3px;
+}
+
+.AircraftInfoLabel {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+    align-items: center;
+    width: 185px;
+    flex-shrink: 0;
+    margin-top: 10px;
+    margin-left: 5px;
+    justify-self: start;
+    align-self: start;
+}
+
+.AircraftNameAndTitle {
+    display: flex;
+    flex-direction: column;
+    max-width: 117px;
+}
+
+.AircraftName {
+    font-weight: 400;
+    font-size: 1.3em;
+    white-space: nowrap;
+}
+
+.AircraftSubtitle {
+    font-style: italic;
+    color: var(--color-text2);
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.AircraftImage {
+    position: relative;
+    height: 55px;
+    aspect-ratio: 1536/1024;
+    margin-left: 5px;
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.StatusMenu {
+    z-index: 1000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(50%, 87%);
+    background-color: #222223;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.StatusOption {
+    padding: 5px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.StatusOption:hover {
+    background-color: var(--color-tertiary);
+}
+
+.StatusColor {
+    border-radius: 50%;
+    height: 10px;
+    aspect-ratio: 1/1;
+}
+
+.StatusTitle {
+    color: rgb(255, 254, 238);
+}
+
+.DetailLabels {
+    display: flex;
+    flex-direction: column;
+    //gap: 50px;
+}
+
+.DetailLabel {
+    text-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.DetailLabel.fake {
+    visibility: hidden;
+}
+
+.DetailInputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.Input {
+    width: 242px;
+    outline: 0;
+    padding: 0;
+    padding-inline: 3px;
+    margin: 0;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font: inherit;
+    color: inherit;
+    resize: none;
+    margin: 1px;
+    border-radius: 3px;
+    background-color: var(--color-main);
+    border: var(--border-optional);
+}
+
+.Input::placeholder {
+    color: var(--input-color-placeholder);
+}
+
+.Input.detail {
+    min-width: 300px;
+}
+
+.Input.location {
+    max-width: 98px;
+    color: var(--color-text);
+    overflow: hidden;
+}
+
+.multitext {
+    flex-grow: 1;
+}
+
+.LocationDetailsContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.LocationIcon {
+    height: 15px;
+    aspect-ratio: 1/1;
+    background-image: url(/location.png);
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    filter: var(--icon-color);
+}
+
+@media (max-width: 760px) {
+    .AircraftInfoCard {
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        min-width: 185px;
+    }
+
+    .AircraftInfoLabel {
+        width: 100%;
+    }
+
+    .DetailInputs {
+        width: 100%;
+    }
+
+    .Input {
+        width: 100%;
+    }
+
+    .Input.detail {
+        min-width: fit-content;
+        width: 100%;
+    }
+}

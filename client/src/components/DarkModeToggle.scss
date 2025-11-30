@@ -1,0 +1,34 @@
+.DarkModeToggle {
+    height: 25px;
+    aspect-ratio: 1/1;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.DarkModeToggle:hover {
+    transform: scale(1.1);
+}
+
+.light {
+    background-image: url(/sun.png);
+}
+
+.dark {
+    background-image: url(/moon.png);
+}
+
+.dark.animated {
+    animation: ToggleDarkMode 0.8s ease forwards;
+}
+
+.light.animated {
+    animation: ToggleDarkMode 0.8s ease reverse;
+}
+
+@keyframes ToggleDarkMode {
+  0%   { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}

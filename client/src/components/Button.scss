@@ -1,0 +1,39 @@
+.Button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: box-shadow 0.25s ease, filter 0.25s ease;
+    cursor: pointer;
+}
+
+.Button:hover {
+    box-shadow: 0 0 8px rgba(0,0,0,0.22);
+    filter: brightness(1.1); /* subtle pop */
+}
+
+.Button:active {
+    box-shadow: 0 0 4px rgba(0,0,0,0.28);
+    filter: brightness(0.9);
+}
+
+.Button.main {
+    background-color: var(--color-accent1);
+}
+
+.Button.alt {
+    background-color: rgb(51, 51, 51);
+}
+
+.ButtonIcon {
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    //filter: var(--icon-color);
+    filter: invert(1);
+    height: 18px;
+    aspect-ratio: 1/1;
+}

@@ -1,0 +1,30 @@
+.SimpleOpenEndedFieldset {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 169.45px;
+    min-height: 169.45px;
+    width: 100%;
+    max-width: 603.2px;
+    color: var(--color-text2);
+    font-weight: 400;
+
+    padding-inline: 8px;
+    min-inline-size: 0;
+    border-radius: 5px;
+    border: var(--border-secondary);
+    box-sizing: border-box;
+}
+
+.SimpleOpenEndedFieldset > legend {
+    padding: 0 2px;
+    margin-left: 6px;
+    font-size: 1rem;
+    color: var(--color-text2);
+}
+
+.Input.detail {
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: 200;
+}
