@@ -12,18 +12,13 @@ interface AircraftInfoCardProps {
     index: number;
     name: string;
     type: string;
-    base: string
 }
 
-const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type, base }) => {
+const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type }) => {
 
     const { state: aircraftInfo, setState: setAircraftInfo } = useBriefFormState({ key: 'aircraftInfo', index: index });
-    //const status = useBriefStore(state => state.form.aircraftInfo[index].status);
     const aircraft = useBriefStore(s => s.form.aircraftInfo[index]);
 
-    //const aircraftInfo = useBriefStore(state => state.form.aircraftInfo[index]);
-
-    //const [status, setStatus] = useState<number>(1);
     const [statusMenuOpen, setStatusMenuOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -55,6 +50,13 @@ const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type, base }
         });
     };
 
+    const updateStatusField = (key: string, value: string) => {
+        setAircraftInfo({
+            ...aircraftInfo[index],
+            status: { ...aircraftInfo[index].status, [key]: value }
+        });
+    };
+
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
             if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -75,6 +77,7 @@ const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type, base }
 
     const status = aircraft.status;
     const location = aircraft.location;
+    const statusFields = aircraft.status;
 
     return (
         <div className="AircraftInfoCard">
@@ -88,7 +91,7 @@ const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type, base }
                         <textarea 
                             className='Input location' 
                             onInput={handleLocationInput}
-                            defaultValue={base}
+                            value={location}
                             rows={1}
                             data-tooltip-id='Il'
                             data-tooltip-content='Edit Location'
@@ -99,7 +102,6 @@ const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type, base }
                 <div 
                     id="ac" className="AircraftImage" 
                     style={{ 
-                        //backgroundImage: `url(/apollo_${type}.png)`,
                         WebkitMaskImage: `url(/apollo_${type}.png)`,
                         maskImage: `url(/apollo_${type}.png)`,
                         backgroundColor: statusUI[status.status].color
@@ -132,7 +134,7 @@ const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type, base }
                     </div>
                     )}
             </label>
-            <FieldsetDetails fields={statusUI[status.status].fields} />
+            <FieldsetDetails fields={statusFields} UIFields={statusUI[status.status].fields} updater={updateStatusField}/>
         </div>
     );
 };

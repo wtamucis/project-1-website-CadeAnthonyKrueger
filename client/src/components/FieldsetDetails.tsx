@@ -1,8 +1,14 @@
 import { useState } from "react";
 import "./FieldsetDetails.scss";
 
-interface FieldsetDetailsProps {
-    fields: FieldDef[];
+type StringFields<T> = {
+    [K in keyof T as T[K] extends string ? K : never]: T[K];
+};
+
+interface FieldsetDetailsProps<T extends object> {
+    fields: StringFields<T>;
+    UIFields: FieldDef[];
+    updater: (key: keyof StringFields<T>, value: string) => void;
     subclass?: string;
     children?: React.ReactNode;
 }
@@ -14,7 +20,7 @@ export interface FieldDef {
     placeholder: string;
 }
 
-const FieldsetDetails = ({ fields, subclass = "", children }: FieldsetDetailsProps) => {
+const FieldsetDetails = <T extends object>({ fields, UIFields, updater, subclass = "", children }: FieldsetDetailsProps<T>) => {
 
     const [focusedField, setFocusedField] = useState<string | null>(null);
 
@@ -22,7 +28,7 @@ const FieldsetDetails = ({ fields, subclass = "", children }: FieldsetDetailsPro
         <fieldset className={`FieldsetDetails ${subclass}`}>
             {children}
             <legend>
-                {fields
+                {UIFields
                     .map((f, i) => (
                         <span
                             key={i}
@@ -38,12 +44,14 @@ const FieldsetDetails = ({ fields, subclass = "", children }: FieldsetDetailsPro
             </legend>
 
             <div className="DetailInputs">
-                {fields.map((f) =>
+                {UIFields.map((f) =>
                     f.type === "textarea" ? (
                         <textarea
                             key={f.key}
                             className="Input detail multitext"
                             placeholder={f.placeholder}
+                            value={(fields[f.key as keyof StringFields<T>] ?? "") as string}
+                            onChange={(e) => updater(f.key as keyof StringFields<T>, e.target.value)}
                             onFocus={() => setFocusedField(f.key)}
                             onBlur={() => setFocusedField(null)}
                         />
@@ -53,6 +61,8 @@ const FieldsetDetails = ({ fields, subclass = "", children }: FieldsetDetailsPro
                             className="Input detail"
                             type="text"
                             placeholder={f.placeholder}
+                            value={(fields[f.key as keyof StringFields<T>] ?? "") as string}
+                            onChange={(e) => updater(f.key as keyof StringFields<T>, e.target.value)}
                             onFocus={() => setFocusedField(f.key)}
                             onBlur={() => setFocusedField(null)}
                         />
@@ -61,7 +71,7 @@ const FieldsetDetails = ({ fields, subclass = "", children }: FieldsetDetailsPro
             </div>
         </fieldset>
     );
-    
+
 };
 
 export default FieldsetDetails;

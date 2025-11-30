@@ -44,9 +44,9 @@ const SingleBriefPage = () => {
     const { state: date, setState: setDate } = useBriefFormState({ key: 'date' });
     const { state: personnel, setState: setPersonnel } = useBriefFormState({ key: 'personnel' });
 
-    const aircraftInfo = useBriefStore(state => state.form.aircraftInfo);
+    // const aircraftInfo = useBriefStore(state => state.form.aircraftInfo);
 
-    console.log("Store aircraftInfo:", aircraftInfo);
+    // console.log("Store aircraftInfo:", aircraftInfo);
 
     useEffect(() => {
         setDate(new Date());
@@ -103,7 +103,7 @@ const SingleBriefPage = () => {
                 <div className='MiddleInfoContainer'>
                     <div className="AircraftInfoContainer">
                         {fetchedAircraft.map((aircraft, index) => (
-                            <AircraftInfoCard key={index} index={index} name={aircraft.name} type={aircraft.type} base={aircraft.base}/>
+                            <AircraftInfoCard key={index} index={index} name={aircraft.name} type={aircraft.type}/>
                         ))}
                     </div>
                     <div className='OpenEndedInfoContainer'>
