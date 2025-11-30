@@ -3,15 +3,16 @@ import { Tooltip } from "react-tooltip";
 
 import "./NameAdderComponent.scss";
 
-const NameAdderComponent = () => {
+interface NameAdderComponentProps {
+    initialNames: string[];
+    namesSelected: string[];
+    setNamesSelected: (value: string[]) => void;
+}
 
-    const initialNames = [ 
-        "Rhyski Witness", "Cade Krueger", "Zeadyn Wall", "Jamie Gatlin", "Alyssa Spring", "Sabrina Frederick", "Jose Gonzales",
-        "Candice Wheeler", "Jessica Andrews", "Matt McCall", "Katt Matuza", "Chelsi Bradfute" 
-    ];
+const NameAdderComponent = ({ initialNames, namesSelected, setNamesSelected } : NameAdderComponentProps) => {
 
     const [nameList, setNameList] = useState<string[]>(initialNames);
-    const [namesSelected, setNamesSelected] = useState<string[]>([]);
+    //const [namesSelected, setNamesSelected] = useState<string[]>([]);
     const ogpRef = useRef<HTMLSelectElement>(null);
 
 
@@ -20,14 +21,14 @@ const NameAdderComponent = () => {
         const index = Number(ogpRef.current.value);
         const selectedName = nameList[index];
 
-        setNamesSelected(prev => ([...prev, selectedName]));
+        setNamesSelected([...namesSelected, selectedName]);
         setNameList(prev => prev.filter((_, i) => i !== index));
     };
 
     const handleRemoveName = (index: number) => {
         const selectedName = namesSelected[index];
 
-        setNamesSelected(prev => prev.filter((_, i) => i !== index));
+        setNamesSelected(namesSelected.filter((_, i) => i !== index));
         setNameList(prev => ([...prev, selectedName]));
     };
 

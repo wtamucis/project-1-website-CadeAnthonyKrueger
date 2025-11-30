@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState, type FC } from 'react';
-import './AircraftInfo.scss';
+import './AircraftInfoCard.scss';
 import { Tooltip } from 'react-tooltip';
 import FieldsetDetails from './FieldsetDetails';
 
-interface AircraftInfoProps {
+interface AircraftInfoCardProps {
     name: string;
     type: string;
     base: string
 }
 
-const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
+const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ name, type, base }) => {
 
     const [status, setStatus] = useState<number>(1);
     const [statusMenuOpen, setStatusMenuOpen] = useState<boolean>(false);
@@ -188,7 +188,7 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
     }, [statusMenuOpen]);
 
     return (
-        <div className="AircraftInfo">
+        <div className="AircraftInfoCard">
             <div className='AircraftStatusIndicator' style={{ backgroundColor: statusList[status].color }}/>
             <label className="AircraftInfoLabel" htmlFor='ac'>
                 <div className='AircraftNameAndTitle'>
@@ -235,4 +235,4 @@ const AircraftInfo: FC<AircraftInfoProps> = ({ name, type, base }) => {
     );
 };
 
-export default AircraftInfo;
+export default AircraftInfoCard;
