@@ -7,7 +7,7 @@ const PendingRequests = () => {
 
     const [pendingRequests, setPendingRequests] = useState<number[]>([]);
 
-    const fields = [
+    const UIFields = [
         {
             key: "request_number",
             label: "Request #",
@@ -39,7 +39,8 @@ const PendingRequests = () => {
                 pendingRequests.map((id, index) => (
                     <FieldsetDetails
                         key={id}
-                        fields={fields}
+                        fields={}
+                        UIFields={UIFields}
                         subclass="pendingRequestsFieldset"
                     >
                         <div 
