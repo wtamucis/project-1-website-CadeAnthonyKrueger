@@ -102,8 +102,8 @@ const SingleBriefPage = () => {
                 </div>
                 <div className='MiddleInfoContainer'>
                     <div className="AircraftInfoContainer">
-                        {fetchedAircraft.map((aircraft) => (
-                            <AircraftInfoCard name={aircraft.name} type={aircraft.type} base={aircraft.base}/>
+                        {fetchedAircraft.map((aircraft, index) => (
+                            <AircraftInfoCard key={index} index={index} name={aircraft.name} type={aircraft.type} base={aircraft.base}/>
                         ))}
                     </div>
                     <div className='OpenEndedInfoContainer'>

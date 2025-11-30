@@ -2,164 +2,43 @@ import { useEffect, useRef, useState, type FC } from 'react';
 import './AircraftInfoCard.scss';
 import { Tooltip } from 'react-tooltip';
 import FieldsetDetails from './FieldsetDetails';
+import useBriefStore from '../stores/BriefStore';
+import type { AircraftStatus } from '../types/BriefFormTypes';
+import useBriefFormState from '../hooks/useBriefFormState';
+import { statusUI, type StatusUIItem } from '../config/AircraftStatusUI';
+import { createDefaultStatus } from '../lib/StatusFactory';
 
 interface AircraftInfoCardProps {
+    index: number;
     name: string;
     type: string;
     base: string
 }
 
-const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ name, type, base }) => {
+const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type, base }) => {
 
-    const [status, setStatus] = useState<number>(1);
+    const { state: aircraftInfo, setState: setAircraftInfo } = useBriefFormState({ key: 'aircraftInfo', index: index });
+    //const status = useBriefStore(state => state.form.aircraftInfo[index].status);
+    const aircraft = useBriefStore(s => s.form.aircraftInfo[index]);
+
+    //const aircraftInfo = useBriefStore(state => state.form.aircraftInfo[index]);
+
+    //const [status, setStatus] = useState<number>(1);
     const [statusMenuOpen, setStatusMenuOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
 
-    const statusList = [
-        {
-            label: "Weather Green",
-            color: "#26AF4C",
-            subtitle: (
-                <div className="AircraftSubtitle">
-                    Weather <span style={{ color: "#26AF4C" }}>Green</span>
-                </div>
-            ),
-            fields: [
-                {
-                    key: "green_notes",
-                    label: "Notes",
-                    type: "textarea",
-                    placeholder: `ex. ${name} will have a late medic @ 0030.`,
-                },
-            ],
-        },
-
-        {
-            label: "Weather Yellow",
-            color: "#FED701",
-            subtitle: (
-                <div className="AircraftSubtitle">
-                    Weather <span style={{ color: "#FED701" }}>Yellow</span>
-                </div>
-            ),
-            fields: [
-                {
-                    key: "yellow_notes",
-                    label: "Notes",
-                    type: "textarea",
-                    placeholder: `ex. ${name} will have a late nurse @ 2130.`,
-                },
-            ],
-        },
-
-        {
-            label: "Weather Red",
-            color: "#FC3533",
-            subtitle: (
-                <div className="AircraftSubtitle">
-                    Weather <span style={{ color: "#FC3533" }}>Red</span>
-                </div>
-            ),
-            fields: [
-                {
-                    key: "wx_eta",
-                    label: "Wx ETA",
-                    type: "input",
-                    placeholder: "ex. 1610 for potential wx improvement",
-                },
-                {
-                    key: "red_notes",
-                    label: "Notes",
-                    type: "textarea",
-                    placeholder: `ex. ${name} is reposioned at their aiport for weather`,
-                },
-            ],
-        },
-
-        {
-            label: "On Mission",
-            color: "#1A2878",
-            subtitle: <div className="AircraftSubtitle">On Mission</div>,
-            fields: [
-                {
-                    key: "mission_num",
-                    label: "Mission #",
-                    type: "input",
-                    placeholder: "ex. 25-12345",
-                },
-                {
-                    key: "mission_step",
-                    label: "Next Step",
-                    type: "input",
-                    placeholder: "ex. En route sending",
-                },
-                {
-                    key: "mission_notes",
-                    label: "Notes",
-                    type: "textarea",
-                    placeholder: `ex. ${name} will have MTX from 2130 to 2000`,
-                },
-            ],
-        },
-
-        {
-            label: "Out of Service",
-            color: "#686868",
-            subtitle: <div className="AircraftSubtitle">Out of Service</div>,
-            fields: [
-                {
-                    key: "oos_reason",
-                    label: "Reason",
-                    type: "input",
-                    placeholder: "ex. Scheduled Maintenance",
-                },
-                {
-                    key: "oos_rts",
-                    label: "Est. RTS",
-                    type: "input",
-                    placeholder: "ex. 2100",
-                },
-                {
-                    key: "oos_notes",
-                    label: "Notes",
-                    type: "textarea",
-                    placeholder: `ex. ${name} base OOS. Flights being diverted to KAMA`,
-                },
-            ],
-        },
-
-        {
-            label: "Response Delay",
-            color: "#7D5CFF",
-            subtitle: <div className="AircraftSubtitle">Response Delay</div>,
-            fields: [
-                {
-                    key: "delay_reason",
-                    label: "Delay",
-                    type: "input",
-                    placeholder: "ex. Refilling of oxygen at KTDW",
-                },
-                {
-                    key: "delay_rts",
-                    label: "Est. RTS",
-                    type: "input",
-                    placeholder: "ex. 1510",
-                },
-                {
-                    key: "delay_notes",
-                    label: "Notes",
-                    type: "textarea",
-                    placeholder: `ex. ${name} crew rest end 2133`,
-                },
-            ],
-        },
-    ];
+    const handleStatusChange = (newStatus: AircraftStatus["status"]) => {
+        setAircraftInfo({
+            ...aircraftInfo[index],
+            status: createDefaultStatus(newStatus)
+        });
+    };
 
     const handleStatusMenuChange = (opening: boolean) => {
         setStatusMenuOpen(opening);
     };
 
-    const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleLocationInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const el = e.target;
 
         // Reset height first so shrink works
@@ -169,6 +48,11 @@ const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ name, type, base }) => {
         if (el.scrollHeight > el.clientHeight) {
             el.rows = 2;
         }
+
+        setAircraftInfo({
+            ...aircraftInfo[index],
+            location: el.value
+        });
     };
 
     useEffect(() => {
@@ -187,18 +71,23 @@ const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ name, type, base }) => {
         };
     }, [statusMenuOpen]);
 
+    if (!aircraft) return null; // or loading component
+
+    const status = aircraft.status;
+    const location = aircraft.location;
+
     return (
         <div className="AircraftInfoCard">
-            <div className='AircraftStatusIndicator' style={{ backgroundColor: statusList[status].color }}/>
+            <div className='AircraftStatusIndicator' style={{ backgroundColor: statusUI[status.status].color }}/>
             <label className="AircraftInfoLabel" htmlFor='ac'>
                 <div className='AircraftNameAndTitle'>
                     <div className="AircraftName">{name}</div>
-                    {statusList[status].subtitle}
+                    {statusUI[status.status].subtitle}
                     <div className='LocationDetailsContainer' >
                         <div className='LocationIcon'/>
                         <textarea 
                             className='Input location' 
-                            onInput={handleInput}
+                            onInput={handleLocationInput}
                             defaultValue={base}
                             rows={1}
                             data-tooltip-id='Il'
@@ -213,24 +102,37 @@ const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ name, type, base }) => {
                         //backgroundImage: `url(/apollo_${type}.png)`,
                         WebkitMaskImage: `url(/apollo_${type}.png)`,
                         maskImage: `url(/apollo_${type}.png)`,
-                        backgroundColor: statusList[status].color
+                        backgroundColor: statusUI[status.status].color
                     }}
                     onClick={() => handleStatusMenuChange(true)}
                     data-tooltip-id={`${name}`}
                     data-tooltip-content='Set Status'
                 />
                 <Tooltip id={`${name}`} place="top" />
-                {statusMenuOpen && <div className="StatusMenu" ref={menuRef}>
-                    {statusList.map((status, index) => (
-                        <div key={index} className='StatusOption' 
-                            onClick={() => { setStatus(index); handleStatusMenuChange(false); }}>
-                            <div className="StatusColor" style={{ backgroundColor: status.color }}/>
-                            <div className="StatusTitle">{status.label}</div>
-                        </div>
-                    ))}
-                </div>}
+                {statusMenuOpen && (
+                    <div className="StatusMenu" ref={menuRef}>
+                        {(Object.entries(statusUI) as [AircraftStatus["status"], StatusUIItem][]).map(
+                        ([key, status]) => (
+                            <div
+                            key={key}
+                            className="StatusOption"
+                            onClick={() => {
+                                handleStatusChange(key); 
+                                handleStatusMenuChange(false);
+                            }}
+                            >
+                            <div
+                                className="StatusColor"
+                                style={{ backgroundColor: status.color }}
+                            />
+                            <div className="StatusTitle">{key}</div>
+                            </div>
+                        )
+                        )}
+                    </div>
+                    )}
             </label>
-            <FieldsetDetails fields={statusList[status].fields} />
+            <FieldsetDetails fields={statusUI[status.status].fields} />
         </div>
     );
 };

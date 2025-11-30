@@ -15,6 +15,7 @@ export interface FieldDef {
 }
 
 const FieldsetDetails = ({ fields, subclass = "", children }: FieldsetDetailsProps) => {
+
     const [focusedField, setFocusedField] = useState<string | null>(null);
 
     return (
@@ -60,6 +61,7 @@ const FieldsetDetails = ({ fields, subclass = "", children }: FieldsetDetailsPro
             </div>
         </fieldset>
     );
+    
 };
 
 export default FieldsetDetails;
