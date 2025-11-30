@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import AppFooter from "../components/AppFooter";
-import AppHeader from "../components/AppHeader";
+import AppFooter from "../views/AppFooter";
+import AppHeader from "../views/AppHeader";
 import "./ContentPage.scss";
 import Record from "../components/Record";
+import Button from "../components/Button";
 
 const ContentPage = () => {
 
@@ -100,10 +101,7 @@ const ContentPage = () => {
                 <section className="DataSection">
                     <h5>Shift Briefs</h5>
                     <div className="OptionsArea">
-                        <button 
-                            className="NewButton"
-                            onClick={handleCreateNew}
-                        >+ Create New</button>
+                        <Button text={'+ Create New'} onClick={handleCreateNew} margin="10px"/>
                     </div>
                     <div className="BriefsDataArea">
                         <div className="BriefsDataFilterSection">

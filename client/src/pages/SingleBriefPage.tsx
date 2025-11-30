@@ -1,5 +1,5 @@
-import AppFooter from '../components/AppFooter';
-import AppHeader from '../components/AppHeader';
+import AppFooter from '../views/AppFooter';
+import AppHeader from '../views/AppHeader';
 import NameAdderComponent from '../components/NameAdderComponent';
 import './SingleBriefPage.scss'
 import DatePicker from "react-datepicker";
@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import AircraftInfo from '../components/AircraftInfo';
 import PendingRequests from '../views/PendingRequests';
 import SimpleOpenEndedFieldset from '../components/SimpleOpenEndedFieldset';
+import Button from '../components/Button';
 
 const SingleBriefPage = () => {
 
@@ -81,11 +82,13 @@ const SingleBriefPage = () => {
                         <SimpleOpenEndedFieldset
                             title='Other Notes'
                             placeholder='ex. Apollo Ambulance is out for mtx'
-                            fixedSize={false}
                         />
                     </div>
                 </div>
-                <button onClick={handleSubmit}>Submit</button>
+                <div className='FormButtonArea'>
+                    <Button text='Save & Continue' buttonStyle='alt' margin='5px' width='121px'/>
+                    <Button text='Submit Brief' type='submit' iconPath='forward.png' margin='5px' width='121px'/>
+                </div>
             </form>
             <AppFooter/>
         </div>

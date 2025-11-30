@@ -2,7 +2,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    flex: 1;
     height: 169.45px;
     min-height: 169.45px;
     width: 100%;
@@ -28,12 +27,4 @@
     width: 100%;
     box-sizing: border-box;
     font-weight: 200;
-}
-
-.simple {
-    height: 100%;
-}
-
-.fixedSize {
-    height: fit-content;
 }

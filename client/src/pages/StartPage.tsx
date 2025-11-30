@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import FeatureCard from "../components/FeatureCard";
 import "./StartPage.scss"
-import AppHeader from "../components/AppHeader";
-import AppFooter from "../components/AppFooter";
+import AppHeader from "../views/AppHeader";
+import AppFooter from "../views/AppFooter";
 
 const StartPage = () => {
 

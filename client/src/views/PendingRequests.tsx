@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './PendingRequests.scss';
 import FieldsetDetails from '../components/FieldsetDetails';
+import Button from '../components/Button';
 
 const PendingRequests = () => {
 
@@ -48,7 +49,7 @@ const PendingRequests = () => {
                     </FieldsetDetails>
                 ))
             )}
-            <button type='button' className="NewButton" onClick={handleAddPendingRequest}>+ Add Request</button>
+            <Button text={'+ Add Request'} onClick={handleAddPendingRequest} margin="10px"/>
         </fieldset>
     );
 
