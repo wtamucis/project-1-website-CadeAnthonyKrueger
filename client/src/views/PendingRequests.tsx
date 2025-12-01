@@ -1,21 +1,29 @@
-import { useState } from 'react';
 import './PendingRequests.scss';
 import FieldsetDetails from '../components/FieldsetDetails';
 import Button from '../components/Button';
+import useBriefStore from '../stores/BriefStore';
 
 const PendingRequests = () => {
 
-    const [pendingRequests, setPendingRequests] = useState<number[]>([]);
+    const pendingRequests = useBriefStore(state => state.form.pendingRequests);
+    const setPendingRequests = (index: number, key: string, value: string) => {
+        const updated = [...pendingRequests];
+        updated[index] = { ...updated[index], [key]: value };
+        return updated;
+    };
+    const updateSlice = useBriefStore(s => s.updateSlice);
+
+    const fields = { 'missionNumber': '', 'waitReason': '' };
 
     const UIFields = [
         {
-            key: "request_number",
+            key: "missionNumber",
             label: "Request #",
             type: "input",
             placeholder: "ex. 25-12345",
         },
         {
-            key: "waiting_for",
+            key: "waitReason",
             label: "What are we waiting for?",
             type: "textarea",
             placeholder: "ex. A1 to finish request 25-17745; then RTB",
@@ -23,11 +31,17 @@ const PendingRequests = () => {
     ];
 
     const handleAddPendingRequest = () => {
-        setPendingRequests(prev => ([...prev, Date.now()]));
+        updateSlice("pendingRequests", [...pendingRequests, fields]);
     };
 
     const handleRemovePendingRequest = (index: number) => {
-        setPendingRequests(prev => prev.filter((_, i) => i !== index));
+        const temp = pendingRequests.filter((_, i) => i !== index);
+        updateSlice('pendingRequests', temp);
+    };
+
+    const updatePendingRequests = (index: number, key: string, value: string) => {
+        const newArray = setPendingRequests(index, key, value);
+        updateSlice("pendingRequests", newArray);
     };
 
     return (
@@ -36,11 +50,12 @@ const PendingRequests = () => {
             {pendingRequests.length === 0 ? (
                 <div className="NoPendingRequests">No Pending Requests</div>
             ) : (
-                pendingRequests.map((id, index) => (
+                pendingRequests.map((request, index) => (
                     <FieldsetDetails
-                        key={id}
-                        fields={}
+                        key={index}
+                        fields={request}
                         UIFields={UIFields}
+                        updater={(k: string, v: string) => updatePendingRequests(index, k, v)}
                         subclass="pendingRequestsFieldset"
                     >
                         <div 

@@ -5,7 +5,7 @@ import AppHeader from '../views/AppHeader';
 import NameAdderComponent from '../components/NameAdderComponent';
 import './SingleBriefPage.scss'
 import DatePicker from "react-datepicker";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import PendingRequests from '../views/PendingRequests';
 import SimpleOpenEndedFieldset from '../components/SimpleOpenEndedFieldset';
@@ -15,6 +15,7 @@ import useBriefStore from '../stores/BriefStore';
 import AircraftInfoCard from '../components/AircraftInfoCard';
 import type { BackendAircraft } from '../types/BriefFormTypes';
 import useBriefFormState from '../hooks/useBriefFormState';
+import { useNavigate } from 'react-router-dom';
 
 const SingleBriefPage = () => {
 
@@ -33,7 +34,7 @@ const SingleBriefPage = () => {
         "Candice Wheeler", "Jessica Andrews", "Matt McCall", "Katt Matuza", "Chelsi Bradfute" 
     ]);
 
-    // This would be where the backend gets called. For now we use static aircraftInfo list.
+    // This would be where the backend gets called. For now we use static arrays for fetched data.
     // useEffect(() => {
     //     fetchAircraftData().then(setFetchedAircraft);
     //     fetchPersonnelData().then(setFetchedNames);
@@ -41,8 +42,13 @@ const SingleBriefPage = () => {
 
     // All Zustand state and initialization
     const initializeAircraft = useBriefStore(state => state.initializeAircraft);
+    const briefForm = useBriefStore(state => state.form);
     const { state: date, setState: setDate } = useBriefFormState({ key: 'date' });
     const { state: personnel, setState: setPersonnel } = useBriefFormState({ key: 'personnel' });
+    const { state: nicuNotes, setState: setNicuNotes } = useBriefFormState({ key: 'nicuNotes' });
+    const { state: scheduledTransportNotes, setState: setScheduledTransportNotes } = useBriefFormState({ key: 'scheduledTransportNotes' });
+    const { state: deviceStatusNotes, setState: setDeviceStatusNotes } = useBriefFormState({ key: 'deviceStatusNotes' });
+    const { state: otherNotes, setState: setOtherNotes } = useBriefFormState({ key: 'otherNotes' });
 
     // const aircraftInfo = useBriefStore(state => state.form.aircraftInfo);
 
@@ -66,27 +72,46 @@ const SingleBriefPage = () => {
         return unsubscribe; // cleanup on unmount
     }, []);
 
-    // const handleSubmit = (e: { preventDefault: () => void; target: HTMLFormElement | undefined; }) => {
-    //     e.preventDefault(); // prevents page refresh
+    // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+    //     const form = document.createElement("form");
+    //     form.method = "POST";
+    //     form.action = "https://www.w3schools.com/action_page.php";
+    //     form.style.display = "none";
 
-    //     // Gather ALL form data (inputs, textareas, selects)
-    //     const data = Object.fromEntries(new FormData(e.target));
+    //     const briefForm = useBriefStore.getState().form;
 
-    //     // Send it to the endpoint
-    //     fetch("https://www.w3schools.com/action_page.php", {
-    //         method: "POST",
-    //         body: new URLSearchParams(data)
-    //     })
-    //     .then(res => res.text())
-    //     .then(result => console.log("Response:", result))
-    //     .catch(err => console.error(err));
+    //     // Flatten + append all fields to classic POST
+    //     Object.entries(briefForm).forEach(([key, value]) => {
+    //         const input = document.createElement("input");
+    //         input.type = "hidden";
+    //         input.name = key;
+    //         input.value =
+    //             value === undefined || value === null
+    //                 ? ""
+    //                 : typeof value === "string"
+    //                     ? value
+    //                     : JSON.stringify(value);
+    //         form.appendChild(input);
+    //         console.log(key, value);
+    //     });
+
+    //     document.body.appendChild(form);
+    //     form.submit();
     // };
+
+    const navigate = useNavigate();
+
+    const handleSubmit = () => {
+        sessionStorage.setItem("output", JSON.stringify(briefForm));
+        navigate("/output");
+    };
 
      return (
         <div className="SingleBriefPage">
             <AppHeader/>
             <h4 style={{ textAlign: 'center' }}>Daily Shift Brief</h4>
-            <form className='FormArea' action="https://www.w3schools.com/action_page.php" method="POST">
+            <form className='FormArea' onSubmit={handleSubmit}>
                 <div className="OpenerInfoContainer">
                     <NameAdderComponent initialNames={fetchedNames} namesSelected={personnel} setNamesSelected={setPersonnel}/>
                     <div className="DateContainer">
@@ -111,18 +136,26 @@ const SingleBriefPage = () => {
                         <SimpleOpenEndedFieldset 
                             title='Any NICU/hospital diversions?'
                             placeholder='ex. BSA ER no trauma beds available; divert to NWTH'
+                            value={nicuNotes}
+                            updater={setNicuNotes}
                         />
                         <SimpleOpenEndedFieldset 
                             title='Any scheduled transports, PR events, or repositions planned?'
                             placeholder='ex. A4 schedueled for PR at stadium at 1400'
+                            value={scheduledTransportNotes}
+                            updater={setScheduledTransportNotes}
                         />
                         <SimpleOpenEndedFieldset
                             title='Verify UHV radio has Apollo selected and NOT muted, PTTs, iPhone, & iPads are charged'
                             placeholder='ex. All charged and unmuted'
+                            value={deviceStatusNotes}
+                            updater={setDeviceStatusNotes}
                         />
                         <SimpleOpenEndedFieldset
                             title='Other Notes'
                             placeholder='ex. Apollo Ambulance is out for mtx'
+                            value={otherNotes}
+                            updater={setOtherNotes}
                         />
                     </div>
                 </div>

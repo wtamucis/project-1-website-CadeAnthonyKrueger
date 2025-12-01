@@ -90,9 +90,8 @@ const ContentPage = () => {
 
     const handleCreateNew = () => {
         // this is where we will add to the database
-        // const today = new Date().toLocaleDateString();
         navigate('/single-brief');
-    }
+    };
 
     return (
         <div className="ContentPage">
