@@ -49,21 +49,13 @@ const SingleBriefPage = () => {
     const { state: scheduledTransportNotes, setState: setScheduledTransportNotes } = useBriefFormState({ key: 'scheduledTransportNotes' });
     const { state: deviceStatusNotes, setState: setDeviceStatusNotes } = useBriefFormState({ key: 'deviceStatusNotes' });
     const { state: otherNotes, setState: setOtherNotes } = useBriefFormState({ key: 'otherNotes' });
-
-    // const aircraftInfo = useBriefStore(state => state.form.aircraftInfo);
-
-    // console.log("Store aircraftInfo:", aircraftInfo);
-
+    
     useEffect(() => {
         setDate(new Date());
         initializeAircraft(fetchedAircraft);
     }, []);
 
     // Debugging
-    // useEffect(() => {
-    //     console.log("AircraftInfo changed:", aircraftInfo);
-    // }, [aircraftInfo]);
-
     useEffect(() => {
         const unsubscribe = useBriefStore.subscribe((state) => {
             console.log("FORM UPDATED:", state.form);
@@ -72,34 +64,7 @@ const SingleBriefPage = () => {
         return unsubscribe; // cleanup on unmount
     }, []);
 
-    // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-    //     const form = document.createElement("form");
-    //     form.method = "POST";
-    //     form.action = "https://www.w3schools.com/action_page.php";
-    //     form.style.display = "none";
-
-    //     const briefForm = useBriefStore.getState().form;
-
-    //     // Flatten + append all fields to classic POST
-    //     Object.entries(briefForm).forEach(([key, value]) => {
-    //         const input = document.createElement("input");
-    //         input.type = "hidden";
-    //         input.name = key;
-    //         input.value =
-    //             value === undefined || value === null
-    //                 ? ""
-    //                 : typeof value === "string"
-    //                     ? value
-    //                     : JSON.stringify(value);
-    //         form.appendChild(input);
-    //         console.log(key, value);
-    //     });
-
-    //     document.body.appendChild(form);
-    //     form.submit();
-    // };
-
+    // Submission logic will offload to the backend eventually. Our current setup relies on session storage
     const navigate = useNavigate();
 
     const handleSubmit = () => {
