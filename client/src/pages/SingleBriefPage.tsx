@@ -2,10 +2,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import AppFooter from '../views/AppFooter';
 import AppHeader from '../views/AppHeader';
-import NameAdderComponent from '../components/NameAdderComponent';
 import './SingleBriefPage.scss'
 import DatePicker from "react-datepicker";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import PendingRequests from '../views/PendingRequests';
 import SimpleOpenEndedFieldset from '../components/SimpleOpenEndedFieldset';
@@ -16,9 +15,15 @@ import AircraftInfoCard from '../components/AircraftInfoCard';
 import type { BackendAircraft } from '../types/BriefFormTypes';
 import useBriefFormState from '../hooks/useBriefFormState';
 import { useNavigate } from 'react-router-dom';
+import { convertToSaveName } from '../utils/DateToName';
+import { convertDateToString, convertStringToDate } from '../utils/ConvertDateType';
+import { useUserStore } from '../stores/UserStore';
+import type { User } from '../types/UserTypes';
+import MultiSelect from '../components/MultiSelect';
 
 const SingleBriefPage = () => {
 
+    // Working on deleting this
     const [fetchedAircraft, setFetchedAircraft] = useState<BackendAircraft[]>([
         { name: 'Apollo 1', type: 'plane', base: 'KTDW' },
         { name: 'Apollo 2', type: 'plane', base: 'KGUY' },
@@ -29,33 +34,50 @@ const SingleBriefPage = () => {
         { name: 'Skycare', type: 'rotor', base: 'UHSA' }
     ]);
 
-    const [fetchedNames, setFetchedNames] = useState<string[]>([ 
-        "Rhyski Witness", "Cade Krueger", "Zeadyn Wall", "Jamie Gatlin", "Alyssa Spring", "Sabrina Frederick", "Jose Gonzales",
-        "Candice Wheeler", "Jessica Andrews", "Matt McCall", "Katt Matuza", "Chelsi Bradfute" 
-    ]);
+    // const [fetchedNames, setFetchedNames] = useState<string[]>([ 
+    //     "Rhyski Witness", "Cade Krueger", "Zeadyn Wall", "Jamie Gatlin", "Alyssa Spring", "Sabrina Frederick", "Jose Gonzales",
+    //     "Candice Wheeler", "Jessica Andrews", "Matt McCall", "Katt Matuza", "Chelsi Bradfute" 
+    // ]);
 
-    // This would be where the backend gets called. For now we use static arrays for fetched data.
-    // useEffect(() => {
-    //     fetchAircraftData().then(setFetchedAircraft);
-    //     fetchPersonnelData().then(setFetchedNames);
-    // }, []);
+    // UI state and hooks
+    const navigate = useNavigate();
 
-    // All Zustand state and initialization
-    const initializeAircraft = useBriefStore(state => state.initializeAircraft);
+    // All BriefStore state and initialization
     const briefForm = useBriefStore(state => state.form);
-    const { state: date, setState: setDate } = useBriefFormState({ key: 'date' });
-    const { state: personnel, setState: setPersonnel } = useBriefFormState({ key: 'personnel' });
+    const initializeAircraft = useBriefStore(state => state.initializeAircraft);
+    const updateSlice = useBriefStore(s => s.updateSlice);
+    const { state: briefDate, setState: setBriefDate } = useBriefFormState({ key: 'briefDate' });
+    const { state: personnelIds, setState: setPersonnelIds } = useBriefFormState({ key: 'personnelIds' });
     const { state: nicuNotes, setState: setNicuNotes } = useBriefFormState({ key: 'nicuNotes' });
     const { state: scheduledTransportNotes, setState: setScheduledTransportNotes } = useBriefFormState({ key: 'scheduledTransportNotes' });
     const { state: deviceStatusNotes, setState: setDeviceStatusNotes } = useBriefFormState({ key: 'deviceStatusNotes' });
     const { state: otherNotes, setState: setOtherNotes } = useBriefFormState({ key: 'otherNotes' });
-    
+
+    // UserStore state
+    const users = useUserStore(s => s.users);
+    const getUserNames = useUserStore(s => s.getUserNames);
+
+    // Handler functions
+    // Submission logic will offload to the backend eventually. Our current setup relies on session storage
+    const handleSubmit = () => {
+        sessionStorage.setItem("output", JSON.stringify(briefForm));
+        navigate("/output");
+    };
+
+    // Effects
     useEffect(() => {
-        setDate(new Date());
+        const date = new Date().toISOString();
+        console.log("initial render " + date)
+        setBriefDate(date);
+        updateSlice('createdAt', date);
         initializeAircraft(fetchedAircraft);
     }, []);
 
-    // Debugging
+    useEffect(() => {
+        updateSlice('briefSaveName', convertToSaveName(briefDate, getUserNames(personnelIds)));
+    }, [briefDate, personnelIds]);
+
+    // Debugging /////////////////////////////////////////////////////
     useEffect(() => {
         const unsubscribe = useBriefStore.subscribe((state) => {
             console.log("FORM UPDATED:", state.form);
@@ -63,14 +85,7 @@ const SingleBriefPage = () => {
 
         return unsubscribe; // cleanup on unmount
     }, []);
-
-    // Submission logic will offload to the backend eventually. Our current setup relies on session storage
-    const navigate = useNavigate();
-
-    const handleSubmit = () => {
-        sessionStorage.setItem("output", JSON.stringify(briefForm));
-        navigate("/output");
-    };
+    //////////////////////////////////////////////////////////////////
 
      return (
         <div className="SingleBriefPage">
@@ -78,14 +93,21 @@ const SingleBriefPage = () => {
             <h4 style={{ textAlign: 'center' }}>Daily Shift Brief</h4>
             <form className='FormArea' onSubmit={handleSubmit}>
                 <div className="OpenerInfoContainer">
-                    <NameAdderComponent initialNames={fetchedNames} namesSelected={personnel} setNamesSelected={setPersonnel}/>
+                    <MultiSelect<User> 
+                        items={users} 
+                        selectedItems={personnelIds} 
+                        setSelectedItems={setPersonnelIds} 
+                        getLabel={(u) => u.name}
+                        getId={(u) => u.id}
+                        tooltipLabel='Name'
+                    />
                     <div className="DateContainer">
                         <strong>Date: </strong>
                         <div className="DatePickerWrap">
                             <DatePicker
-                                className='EditableDate'
-                                selected={date}
-                                onChange={(d) => setDate(d)}
+                                className="EditableDate"
+                                selected={convertStringToDate(briefDate)}
+                                onChange={(date) => { console.log(typeof date); setBriefDate(convertDateToString(date)); }}
                             />
                         </div>
                     </div>

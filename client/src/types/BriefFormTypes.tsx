@@ -61,14 +61,24 @@ export interface PendingRequest {
 }
 
 export interface BriefForm {
-    personnel: string[];
-    date: Date | null | undefined;
+    id: number;
+    briefSaveName?: string;
+    createdAt: string;
+    createdBy: number;
+    lastModifiedBy: number;
+    updatedAt: string;
+    version: number;
+    status: 'draft' | 'submitted' | 'archived';
+    tags: string[];
+    isDeleted: boolean;
+    briefDate: string;
+    personnelIds: number[];
     aircraftInfo: AircraftInfo[];
     pendingRequests: PendingRequest[];
-    nicuNotes: string | null | undefined;
-    scheduledTransportNotes: string | null | undefined;
-    deviceStatusNotes: string | null | undefined;
-    otherNotes: string | null | undefined;
+    nicuNotes: string;
+    scheduledTransportNotes: string;
+    deviceStatusNotes: string;
+    otherNotes: string;
 }
 
 export interface BriefStore {

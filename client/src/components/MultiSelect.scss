@@ -1,4 +1,4 @@
-.NameAdderComponent {
+.MultiSelect {
     display: flex;
     justify-content: left;
     align-items: center;
@@ -6,7 +6,7 @@
 }
 
 @media (max-width: 760px) {
-    .NameAdderComponent {
+    .MultiSelect {
         flex-direction: column;
     }
 }
@@ -15,7 +15,7 @@
     padding-block: 8px;
 }
 
-.NameEntry {
+.TextEntry {
     margin: 0;
     cursor: pointer;
     padding: 8px;
@@ -24,7 +24,7 @@
     border-radius: 4px;
 }
 
-.NameEntry:hover {
+.TextEntry:hover {
     text-decoration: underline;
 }
 

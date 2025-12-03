@@ -1,20 +1,30 @@
 import { create } from "zustand";
 import type { BriefStore, BriefForm, BackendAircraft } from "../types/BriefFormTypes.tsx";
-import { createDefaultStatus } from "../lib/StatusFactory.tsx";
+import { createDefaultStatus } from "../utils/StatusFactory.tsx";
 
-const defaultForm: BriefForm = {
-    personnel: [],
-    date: undefined,
+const createEmptyForm = (): BriefForm => ({
+    id: 1,
+    briefSaveName: '',
+    createdAt: '',
+    createdBy: 1,
+    lastModifiedBy: 1,
+    updatedAt: '',
+    version: 1,
+    status: 'draft',
+    tags: [],
+    isDeleted: false,
+    briefDate: '',
+    personnelIds: [],
     aircraftInfo: [],
     pendingRequests: [],
-    nicuNotes: undefined,
-    scheduledTransportNotes: undefined,
-    deviceStatusNotes: undefined,
-    otherNotes: undefined,
-};
+    nicuNotes: '',
+    scheduledTransportNotes: '',
+    deviceStatusNotes: '',
+    otherNotes: '',
+});
 
 const useBriefStore = create<BriefStore>((set) => ({
-    form: defaultForm,
+    form: createEmptyForm(),
 
     updateSlice: (key, value) =>
         set((state) => ({

@@ -3,7 +3,7 @@ import './AppHeader.scss'
 
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
-import NavBar from "../components/NavBar";
+import NavBar from "./NavBar.tsx";
 import { useEffect, useState } from "react";
 
 const AppHeader = () => {

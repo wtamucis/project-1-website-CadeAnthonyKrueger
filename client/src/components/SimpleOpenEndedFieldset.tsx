@@ -4,7 +4,7 @@ interface SimpleOpenEndedFieldsetProps {
     title: string;
     placeholder: string;
     value: string | null | undefined;
-    updater: (value: string | null | undefined) => void;
+    updater: (value: string) => void;
 }
 
 const SimpleOpenEndedFieldset = ({ title, placeholder, value, updater }: SimpleOpenEndedFieldsetProps) => {

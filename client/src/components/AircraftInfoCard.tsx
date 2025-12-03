@@ -6,7 +6,7 @@ import useBriefStore from '../stores/BriefStore';
 import type { AircraftStatus } from '../types/BriefFormTypes';
 import useBriefFormState from '../hooks/useBriefFormState';
 import { statusUI, type StatusUIItem } from '../config/AircraftStatusUI';
-import { createDefaultStatus } from '../lib/StatusFactory';
+import { createDefaultStatus } from '../utils/StatusFactory';
 
 interface AircraftInfoCardProps {
     index: number;
@@ -16,12 +16,15 @@ interface AircraftInfoCardProps {
 
 const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type }) => {
 
-    const { state: aircraftInfo, setState: setAircraftInfo } = useBriefFormState({ key: 'aircraftInfo', index: index });
-    const aircraft = useBriefStore(s => s.form.aircraftInfo[index]);
-
+    // UI state
     const [statusMenuOpen, setStatusMenuOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
 
+    // Global state
+    const { state: aircraftInfo, setState: setAircraftInfo } = useBriefFormState({ key: 'aircraftInfo', index: index });
+    const aircraft = useBriefStore(s => s.form.aircraftInfo[index]);
+
+    // Handler functions
     const handleStatusChange = (newStatus: AircraftStatus["status"]) => {
         setAircraftInfo({
             ...aircraftInfo[index],
@@ -35,15 +38,10 @@ const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type }) => {
 
     const handleLocationInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const el = e.target;
-
-        // Reset height first so shrink works
         el.rows = 1;
-
-        // If content overflows, grow rows
         if (el.scrollHeight > el.clientHeight) {
             el.rows = 2;
         }
-
         setAircraftInfo({
             ...aircraftInfo[index],
             location: el.value
@@ -57,22 +55,18 @@ const AircraftInfoCard: FC<AircraftInfoCardProps> = ({ index, name, type }) => {
         });
     };
 
+    // Effects
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
             if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
                 handleStatusMenuChange(false); // CLOSE MENU
             }
         }
-
-        if (statusMenuOpen) {
-            document.addEventListener("mousedown", handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
+        if (statusMenuOpen) document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [statusMenuOpen]);
 
+    // Early return and local extracted vars
     if (!aircraft) return null; // or loading component
 
     const status = aircraft.status;
