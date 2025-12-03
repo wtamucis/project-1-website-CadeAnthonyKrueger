@@ -1,106 +1,73 @@
-📋 project-1-website-CadeAnthonyKrueger
+# project-1-website-CadeAnthonyKrueger
 
-A unified React/Vite application supporting Apollo MedFlight’s communication center operations.
+## Overview
+This application serves as a unified hub for Apollo MedFlight’s communication center, giving staff a streamlined and centralized way to manage the entire shift-brief lifecycle. It brings everything into one place so teams can stay aligned, maintain continuity between rotations, and access important information without navigating between scattered tools or notes.
 
-🚀 Overview
+## Tech Stack
 
-This application serves as a unified hub for Apollo MedFlight’s communication center, giving staff a streamlined and centralized way to manage the entire shift-brief lifecycle. It brings everything into one place so teams can stay aligned, maintain continuity between rotations, and access important information without navigating through scattered tools, outdated spreadsheets, or handwritten notes.
+### Frontend
+- React 19
+- Vite 7
+- TypeScript
+- Sass (SCSS Modules)
+- React Router DOM 7
+- Zustand
+- React DatePicker
+- React Tooltip
 
-🛠️ Tech Stack
+### Tooling
+- ESLint
+- TypeScript ESLint
+- Vite React Plugin
 
-Frontend
+## Project Setup
 
-React 19
-
-Vite 7
-
-TypeScript
-
-Sass (SCSS Modules)
-
-React Router DOM 7
-
-Zustand (state management)
-
-React DatePicker
-
-React Tooltip
-
-Tooling
-
-ESLint
-
-TypeScript ESLint
-
-Vite React Plugin
-
-📦 Project Setup
-1. Clone the repository
+### 1. Clone the repository
 git clone https://github.com/CadeAnthonyKrueger/project-1-website-CadeAnthonyKrueger.git
 
-2. Navigate into the client folder
-
-This project uses a dedicated React/Vite client directory.
-
+### 2. Navigate into the client folder
 cd project-1-website-CadeAnthonyKrueger/client
 
-3. Install dependencies
+### 3. Install dependencies
 npm install
 
-4. Start the development server
+### 4. Start the development server
 npm run dev
 
-
-The app will launch on a local Vite dev server, typically:
-
+The app will typically run at:
 http://localhost:5173/
 
-🧱 Project Scripts
-Script	Description
-npm run dev	Starts Vite dev server
-npm run build	Builds TypeScript + production bundle
-npm run preview	Serves built version for testing
-npm run lint	Runs ESLint on the codebase
-🗂️ Folder Structure (Client)
+## Scripts
+
+| Script        | Description                          |
+|--------------|--------------------------------------|
+| npm run dev   | Starts Vite dev server                |
+| npm run build | Builds TypeScript + production bundle |
+| npm run preview | Serves built version for testing     |
+| npm run lint  | Runs ESLint                           |
+
+## Folder Structure (client)
 client/
-│
 ├── src/
 │   ├── components/
 │   ├── views/
-│   ├── stores/           # Zustand stores (shift brief, QA/QI, etc.)
-│   ├── styles/           # SCSS modules / global style sheets
-│   ├── router/           # React Router config
-│   └── main.tsx          # App entry point
-│
+│   ├── stores/
+│   ├── styles/
+│   ├── router/
+│   └── main.tsx
 ├── public/
-│
 ├── package.json
 ├── tsconfig.json
 └── vite.config.ts
 
-🔧 Environment Variables
+## Environment Variables
+No environment variables are required at this time.
 
-None required at this time.
+## Contributing
+1. Fork the repository  
+2. Create a new branch  
+3. Commit your changes  
+4. Push your branch and submit a pull request  
 
-(If you add SQLite, an API layer, or auth later, this section will be updated.)
-
-📸 Screenshots (Optional)
-
-You can add UI screenshots here.
-Example:
-
-![Shift Brief UI](./screenshots/shift-brief.png)
-
-🤝 Contributing
-
-Fork the repo
-
-Create a new branch
-
-Commit your changes
-
-Push and submit a PR
-
-📄 License
-
-This project is for educational use under WTAMU GitHub Classroom unless you choose to extend licensing.
+## License
+This project is for educational use under WTAMU GitHub Classroom.
