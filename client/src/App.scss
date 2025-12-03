@@ -1,0 +1,77 @@
+.App {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+    background: var(--background-gradient);
+    background-size: auto, cover;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    font-weight: 500;
+    font-size: 38px;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+}
+
+h3 {
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border-bottom: var(--border-main);
+    padding-bottom: 3px;
+}
+
+h4 {
+    padding: 0;
+    margin: 0;
+    width: 75%;
+    font-weight: 400;
+    font-size: 2.5em;
+    height: fit-content;
+    border-bottom: var(--border-main);
+    padding-bottom: 3px;
+    margin-bottom: 20px;
+}
+
+h5 {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    font-weight: 400;
+    font-size: 2.5em;
+    height: fit-content;
+    border-bottom: var(--border-main);
+    padding-bottom: 3px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin: 0;
+    width: 99%;
+    margin-bottom: 16px;
+}
+
+.react-tooltip {
+    z-index: 3000 !important;
+}
+
+@media (pointer: coarse) {
+    .react-tooltip {
+        display: none !important;
+    }
+}

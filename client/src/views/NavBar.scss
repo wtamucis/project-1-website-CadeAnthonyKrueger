@@ -1,0 +1,52 @@
+.NavBar {
+    position: fixed;
+    top: 90px;
+    left: -100px;
+    flex-shrink: 0;
+    height: calc(100dvh - 92px - 92px);
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 4000;
+    padding-block: 12px;
+    padding-left: 12.5px;
+    justify-content: flex-start;
+    border-right: var(--border-main);
+    align-items: center;
+    visibility: hidden;
+    transition: left 0.6s ease, visibility 0.6s ease;
+}
+
+.NavBar.visible {
+    left: 0px;
+    visibility: visible;
+}
+
+.NavItem {
+    height: 25px;
+    width: 25px;
+    aspect-ratio: 1/1;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    filter: var(--icon-color);
+    cursor: pointer;
+    transform: translateZ(0);
+    transition: transform 0.3s ease;
+}
+
+.NavItem:hover {
+    transform: scale(1.05);
+}
+
+.NavItem:active {
+    transform: scale(.99);
+}
+
+@media (max-width: 1060px) {
+    .NavBar {
+        height: 100dvh;
+        background-color: var(--backdrop-filter-color);
+    }
+}

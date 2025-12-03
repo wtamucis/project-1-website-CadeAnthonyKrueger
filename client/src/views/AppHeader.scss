@@ -1,0 +1,67 @@
+.AppHeader {
+    align-self: flex-start;
+    position: fixed;
+    top: 0;
+    height: 92px;
+    box-sizing: border-box;
+    width: 100%;
+    padding-block: 20px;
+    padding-inline: 40px;
+    border-top: 2px solid var(--color-accent2);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 2000;
+
+    transition: 0.25s ease;
+    will-change: backdrop-filter, box-shadow;
+
+    &.scrolled {
+        background: var(--backdrop-filter-color);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+}
+
+.Menu {
+    height: 25px;
+    aspect-ratio: 1/1;
+    background-image: url('/menu.png');
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    filter: var(--icon-color);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.Menu:hover {
+    transform: scale(1.05);
+}
+
+.Menu:active {
+    transform: scale(.99);
+}
+
+.Logo {
+    height: 50px;
+    aspect-ratio: 84/30;
+    background-image: var(--site-logo);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-right: auto;
+    margin-left: 10px;
+}
+
+.OverlayBlur {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(6px);
+    background: var(--backdrop-filter-color);
+    z-index: 1999;
+    transition: 0.3s ease all;
+}

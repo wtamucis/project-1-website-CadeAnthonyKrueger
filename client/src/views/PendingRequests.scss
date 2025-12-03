@@ -1,0 +1,73 @@
+.PendingRequests {
+    display: flex;
+    flex-direction: column;
+    //height: 33%;
+    height: 392.2px;
+    min-height: 392.2px;
+    max-height: 392.2px;
+    width: 100%;
+    min-width: 354px;
+    max-width: 603.2px;
+    color: var(--color-text2);
+    font-weight: 400;
+
+    padding-inline: 8px;
+    min-inline-size: auto;
+    border-radius: 5px;
+    border: var(--border-secondary);
+    box-sizing: border-box;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.PendingRequests > legend {
+    padding: 0 2px;
+    margin-left: 6px;
+    font-size: 1rem;
+    color: var(--color-text2);
+}
+
+.PendingRequests::-webkit-scrollbar {
+    width: 10px;
+}
+
+.PendingRequests::-webkit-scrollbar-track {
+    background: var(--color-tertiary);
+}
+
+.PendingRequests::-webkit-scrollbar-thumb {
+    background: rgba(120, 120, 120, 0.7);
+    border-radius: 6px;
+}
+
+.PendingRequests::-webkit-scrollbar-thumb:hover {
+    background: rgba(150, 150, 150, 0.8);
+}
+
+.FieldsetDetails.pendingRequestsFieldset {
+    margin-left: 0;
+    height: fit-content;
+}
+
+.NoPendingRequests {
+    text-align: center;
+    color: var(--color-text2);
+    font-weight: 200;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+.RemovePendingRequest {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    filter: var(--icon-color);
+    background-image: url(/close.png);
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 12px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}

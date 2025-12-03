@@ -1,0 +1,35 @@
+.FeatureCard {
+    border-radius: 5px;
+    background-color: var(--color-secondary);
+    padding: 10px;
+    flex: 1 1;
+    min-width: 120px;
+    max-width: 160px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border: 1px solid rgba(24, 24, 24, 0.2);
+}
+
+.FeatureTitleArea {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-bottom: 10px;
+    gap: 4px;
+}
+
+.FeatureIcon {
+    height: 25px;
+    aspect-ratio: 1/1;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.FeatureText {
+    font-size: 1em;
+    font-style: italic;
+    color: var(--color-text2);
+    width: 99%;
+    padding-block: 5px;
+}

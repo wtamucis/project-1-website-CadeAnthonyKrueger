@@ -1,0 +1,43 @@
+.MultiSelect {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 760px) {
+    .MultiSelect {
+        flex-direction: column;
+    }
+}
+
+.SubtitleText {
+    padding-block: 8px;
+}
+
+.TextEntry {
+    margin: 0;
+    cursor: pointer;
+    padding: 8px;
+    background-color: var(--color-secondary);
+    border: var(--border-main);
+    border-radius: 4px;
+}
+
+.TextEntry:hover {
+    text-decoration: underline;
+}
+
+.NoTextWrap {
+    text-wrap: nowrap;
+    align-self: center;
+    justify-self: center;
+}
+
+.Dropdown {
+    background-color: var(--color-secondary);
+    border: var(--border-main);
+    color: var(--color-text);
+    padding: 5px;
+    border-radius: 5px;
+}
