@@ -1,53 +1,106 @@
-In VS Code, press Ctrl+Shift+V to preview this README.md file or Cmd+Shift+V on a Mac.
+📋 project-1-website-CadeAnthonyKrueger
 
-# CIDM6303-project-website 
-The instructions for this assignment can be found at   
-(https://docs.google.com/document/d/1t0HVdxquGlLDm93fHUsmnHKNRfpCyVy2lPanDvhqcwg/edit?usp=sharing)  
-index.html is ready for you to edit. Add additional files as needed. 
+A unified React/Vite application supporting Apollo MedFlight’s communication center operations.
 
-## How to view a webpage
-To preview a webpage, right click a file and choose Open in Live Server, assuming you have installed this recommended extension. 
+🚀 Overview
 
-## Looking for images to use
-Public domain photos (https://www.publicdomainpictures.net/en/index.php)  
-Generate AI clipart (https://www.emojis.com/)  
-Flickr creative commons (https://www.flickr.com/creativecommons/)  
+This application serves as a unified hub for Apollo MedFlight’s communication center, giving staff a streamlined and centralized way to manage the entire shift-brief lifecycle. It brings everything into one place so teams can stay aligned, maintain continuity between rotations, and access important information without navigating through scattered tools, outdated spreadsheets, or handwritten notes.
 
-Remember these best practices: 
-1. Put your image in the images folder.
-2. Lowercase all file names; use hyphens or underscores if desired—NOT spaces in the file name. Different web servers process upper and lowercase files differently. 
-3. Attribute the source and author if using someone else's creative content.
+🛠️ Tech Stack
 
-## Useful GIT Commands:  
-Use the terminal or command line to issue git commands. 
-  
-**Typically, configure your settings only once per computer**, unless you need to update your name or email address in the future or switch computers. Git saves this information on your computer. *Substitute your name and email address*. This information will be used to log who made which changes to the code.
-```bash
- git config --global user.name "Sean Humpherys" 
- git config --global user.email shumpherys@wtamu.edu
-```
+Frontend
 
-**To clone an assignment for the first time, follow these commands.** Run this command for each assignment. If you use multiple computers (e.g., work, home, school), run it once per computer per assignment. The URL to your assignment repository is found under the [Code] button and "Clone with HTTPS" on GitHub.com.
-```bash
- git clone https://github.com/username/something  #use the URL to your specific assignment repository on github.com
- ```
+React 19
 
-**At the start of your coding session each day**, you should issue the following command to verify you have the latest changes from the online repository or to pull down any changes/comments made by the professor.     
-```bash
- git pull  
- git status 
-```
-You should see the message "Your branch is up to date with 'origin/master'" and "nothing to commit."   
- 
-**At the end of each day (or after your class period) you should run these commands** to upload your changes to your online repository. The professor can view your changes.     
-```bash
- git add -A
- git status    
- git commit -m "Type a message here in quotes that briefly describing your changes"
- git status    
- git push
- git status   
-```
-The first 'git status' should report that files have changed or been added and need to be committed. The second status should say "nothing to commit." The third status should report "Your branch is up to date with 'origin/master'" and "nothing to commit."  
+Vite 7
 
-After you are familiar with the Git workflow, you can skip the 'git status' commands, but they are useful for beginners to see what is happening at each step.
+TypeScript
+
+Sass (SCSS Modules)
+
+React Router DOM 7
+
+Zustand (state management)
+
+React DatePicker
+
+React Tooltip
+
+Tooling
+
+ESLint
+
+TypeScript ESLint
+
+Vite React Plugin
+
+📦 Project Setup
+1. Clone the repository
+git clone https://github.com/CadeAnthonyKrueger/project-1-website-CadeAnthonyKrueger.git
+
+2. Navigate into the client folder
+
+This project uses a dedicated React/Vite client directory.
+
+cd project-1-website-CadeAnthonyKrueger/client
+
+3. Install dependencies
+npm install
+
+4. Start the development server
+npm run dev
+
+
+The app will launch on a local Vite dev server, typically:
+
+http://localhost:5173/
+
+🧱 Project Scripts
+Script	Description
+npm run dev	Starts Vite dev server
+npm run build	Builds TypeScript + production bundle
+npm run preview	Serves built version for testing
+npm run lint	Runs ESLint on the codebase
+🗂️ Folder Structure (Client)
+client/
+│
+├── src/
+│   ├── components/
+│   ├── views/
+│   ├── stores/           # Zustand stores (shift brief, QA/QI, etc.)
+│   ├── styles/           # SCSS modules / global style sheets
+│   ├── router/           # React Router config
+│   └── main.tsx          # App entry point
+│
+├── public/
+│
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+
+🔧 Environment Variables
+
+None required at this time.
+
+(If you add SQLite, an API layer, or auth later, this section will be updated.)
+
+📸 Screenshots (Optional)
+
+You can add UI screenshots here.
+Example:
+
+![Shift Brief UI](./screenshots/shift-brief.png)
+
+🤝 Contributing
+
+Fork the repo
+
+Create a new branch
+
+Commit your changes
+
+Push and submit a PR
+
+📄 License
+
+This project is for educational use under WTAMU GitHub Classroom unless you choose to extend licensing.
